@@ -5,6 +5,7 @@ const PostSchema = new Schema({
     // img: { type: String, required: true },
     // title: { type: String, required: true },
     // subtitle: { type: String, required: true },
+    path: { type: String, unique: true, required: true},
     text: { type: String, required: true },
 })
 

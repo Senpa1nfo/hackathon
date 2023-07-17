@@ -1,33 +1,35 @@
 const PostModel = require('../models/post-model');
 
-
-
 class PostService {
     async getAll() {
         const item = await PostModel.find();
         return item;
     }
 
-    async getOne(id) {
-        const item = await PostModel.findOne({ "id": id });
+    async getOne(path) {
+        const item = await PostModel.findOne({ path });
         return item;
     }
 
-    async edit(id, text) {
-        const item = await PostModel.findOneAndUpdate({ "id": id, text }, {
+    async edit(path, text) {
+        const item = await PostModel.findOneAndUpdate({ path }, { text } , {
             new: true,
             upsert: true
         });
         return item;
     }
 
-    async create(id, text) {
-        const item = await PostModel.create({ "id": id, text });
+    async create(path, text) {
+        const post = await PostModel.findOne({ path });
+        if (post) {
+            return 'Пост с таким путём уже существует!';
+        }
+        const item = await PostModel.create({ path, text });
         return item;
     }
 
-    async remove(id) {
-        const item = await PostModel.deleteOne({ "id": id });
+    async remove(path) {
+        const item = await PostModel.deleteOne({ path });
         return item;
     }
 }

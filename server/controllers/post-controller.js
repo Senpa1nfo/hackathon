@@ -13,8 +13,8 @@ class PostController {
 
     async getOne(req, res, next) {
         try {
-            const id = req.params.id;
-            const item = await PostService.getOne(id);
+            const path = req.params.path;
+            const item = await PostService.getOne(path);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -24,8 +24,8 @@ class PostController {
     async edit(req, res, next) {
         try {
             const { text } = req.body;
-            const id = req.params.id;
-            const item = await PostService.edit(id, text);
+            const path = req.params.path;
+            const item = await PostService.edit(path, text);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -34,8 +34,9 @@ class PostController {
 
     async create(req, res, next) {
         try {
-            const { id, text } = req.body;
-            const item = await PostService.create(id, text);
+            const path = req.params.path;
+            const { text } = req.body;
+            const item = await PostService.create(path, text);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -44,8 +45,8 @@ class PostController {
 
     async remove(req, res, next) {
         try {
-            const id = req.params.id;
-            const item = await PostService.remove(id);
+            const path = req.params.path;
+            const item = await PostService.remove(path);
             return res.json(item);
         } catch (error) {
             next(error);

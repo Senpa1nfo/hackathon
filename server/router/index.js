@@ -5,9 +5,9 @@ const router = new Router();
 router.get('/', (req, res) => { });
 
 router.get('/posts', PostController.getAll);
-router.get('/posts/:id', PostController.getOne);
-router.post('/posts/create/:id', PostController.create);
-router.delete('/posts/delete/:id', PostController.remove);
-router.patch('/posts/update/:id', PostController.edit);
+router.get('/posts/:path', PostController.getOne);
+router.post('/posts/create/:path', PostController.create);
+router.delete('/posts/delete/:path', PostController.remove);
+router.patch('/posts/update/:path', PostController.edit);
 
 module.exports = router;
