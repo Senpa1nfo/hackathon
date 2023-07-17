@@ -17,21 +17,21 @@ app.use(fileUpload({}));
 app.use(cookiePaser());
 app.use(filePathMiddleware(path.resolve(__dirname, 'images')));
 app.use(cors({
-    credentials: true,
-    origin: process.env.CLIENT_URL
+	credentials: true,
+	origin: process.env.CLIENT_URL
 }));
 app.use(router);
 app.use(errorMiddleware);
 
 const start = async () => {
-    try {
-        await mongoose.connect(process.env.DB_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        })
-        app.listen(PORT, console.log('Success ' + PORT));
-    } catch (error) {
-        console.log(error);
-    }
+	try {
+		await mongoose.connect(process.env.DB_URL, {
+			useNewUrlParser: true,
+			useUnifiedTopology: true
+		})
+		app.listen(PORT, console.log('Success ' + PORT));
+	} catch (error) {
+		console.log(error);
+	}
 }
 start();
