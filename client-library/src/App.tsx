@@ -16,6 +16,7 @@ import Materials from "./pages/Materials";
 import OralTraditions from "./pages/OralTraditions";
 import PerformingArts from "./pages/PerformingArts";
 import WorksOfArt from "./pages/WorksOfArt";
+import AdminPanel from "./pages/AdminPanel";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Header></Header>
       <Routes>
           <Route path='/' element={<Main/>}/>
+          <Route path='/admin-panel' element={<AdminPanel/>}/>
           <Route path='/archeology' element={<Archeology/>}/>
           <Route path='/architecture' element={<Architecture/>}/>
           <Route path='/attractions' element={<Attractions/>}/>
