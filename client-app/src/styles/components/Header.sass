@@ -1,0 +1,138 @@
+@import '../mixins'
+@import '../variables'
+    
+.header
+    @include flexCenter
+    width: 100%
+    height: 64px
+    padding: 0 24px
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4)
+    position: relative
+    *
+        transition: all 0.2s
+    &__wrapper
+        @include flexCenter
+    &__logo
+        cursor: pointer
+        display: flex
+        justify-content: center
+        align-items: center
+        gap: 8px
+        &__img
+            fill: $grey
+            width: 28px
+        &__text
+            font-size: 20px
+            font-weight: 600
+        &:hover
+            color: $orange
+        &:hover .header__logo__img    
+            fill: $orange
+        
+    &__navbar
+        width: 800px
+        &__list
+            @include flexCenter
+            width: 100%
+            gap: 40px
+            transition: all 0.5s
+            a
+                font-size: 20px
+                position: relative
+                &::after
+                    content: ''
+                    position: absolute
+                    bottom: 0
+                    left: 0
+                    width: 0
+                    height: 2px
+                    background: $orange
+                    transition: all 0.5s
+                &:hover 
+                    &::after
+                        width: 100%     
+    .btn
+        transition: all 0.4s 
+        font-weight: 600
+        letter-spacing: 0.8px          
+
+@media screen and (max-width: 1400px)
+
+@media screen and (max-width: 1200px) 
+    .header__logo__text
+        display: none
+@media screen and (max-width: 992px) 
+    .header__navbar
+        &__list
+            gap: 20px
+            a
+                font-size: 20px
+
+@media screen and (max-width: 768px) 
+    // .header__logo__img
+    //     display: none
+    .header__navbar
+        &__list
+            gap: 16px
+            a
+                font-size: 16px
+        
+@media screen and (max-width: 576px) 
+    .header__wrapper
+        justify-content: flex-start
+    .header__logo
+        &__img
+            display: block
+            width: 24px
+        &__text
+            display: block
+            font-size: 18px
+    .header__hamburger
+        position: absolute
+        z-index: 3
+        right: 24px
+        width: 24px
+        height: 24px
+        @include flexColumnCenter
+        justify-content: space-around
+        cursor: pointer
+        div
+            width: 100%
+            height: 2px
+            background: $black
+            border-radius: 4px 
+            transition: 1s
+        &_active
+            div
+                &:nth-child(1)
+                    transform: rotateZ(45deg) translateX(9px)
+                &:nth-child(2)
+                    display: none
+                &:nth-child(3)
+                    transform: rotateZ(-45deg) translateX(9px)
+    .header__navbar
+        display: none
+        position: absolute
+        top: 0
+        left: 0
+        z-index: 2
+        width: 100dvw
+        height: 100dvh
+        background: $white
+        &__list
+            @include flexColumnCenter
+            height: 200px
+            box-shadow: none
+            a
+                font-size: 24px
+        &_active
+            @include flexCenter
+    .header__login
+        display: none
+        position: absolute
+        bottom: 0
+        left: 50%
+        transform: translateX(-50%)
+        z-index: 2
+        &_active
+            display: block
