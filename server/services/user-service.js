@@ -7,7 +7,7 @@ const UserDto = require('../dtos/user-dto');
 const ApiError = require('../exceptions/api-error');
 
 class UserService {
-    async registration(email, password) {
+    async registration(name, email, password) {
         const candidate = await UserModel.findOne({email});
         if (candidate) {
             throw ApiError.BadRequest(`Користувач із поштовою адресою ${email} вже існує`);
@@ -15,7 +15,7 @@ class UserService {
         const hashPassword = await bcrypt.hash(password, 3);
         const activationLink = uuid.v4();
         const admin = false;
-        const user = await UserModel.create({email, password: hashPassword, activationLink, admin});
+        const user = await UserModel.create({name, email, password: hashPassword, activationLink, admin});
         await mailService.SendActivationMail(email, `${process.env.API_URL}/api/activate/${activationLink}`);
 
         const userDto = new UserDto(user);
@@ -37,7 +37,7 @@ class UserService {
     async login(email, password) {
         const user = await UserModel.findOne({email});
         if(!user) {
-            throw ApiError.BadRequest(`Користувач з таким email не був знайдений ${user}`);
+            throw ApiError.BadRequest(`Користувач з таким email не був знайдений`);
         }
         const isPassEquals = await bcrypt.compare(password, user.password);
         if (!isPassEquals) {

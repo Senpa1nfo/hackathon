@@ -1,0 +1,79 @@
+@import '../variables'
+@import '../mixins'
+    
+.signin
+    position: absolute
+    top: 0
+    left: 0
+    width: 100dvw
+    height: 100dvh
+    background: rgba(0, 0, 0, 0.2)
+    display: none
+    &_active
+        @include flexCenter
+    &__wrapper
+        padding: 40px
+        background: $white
+        border-radius: 32px 
+        @include flexCenter
+        position: relative
+        overflow: hidden
+        transition: all 0.4s
+    &__form
+        display: none
+        gap: 20px
+        transition: all 0.5s
+        &_active
+            @include flexColumnCenter
+    &__item
+        @include flexColumnCenter
+        align-items: start
+        gap: 4px
+        label
+            color: $light-black
+            line-height: 16px
+    &__error
+        @include flexCenter
+        gap: 8px
+        span          
+            font-size: 14px
+            color: $red
+        &_login, &_reg, &_restore
+            width: 300px
+            display: none
+            &_active
+                display: block
+                span
+                    width: 300px
+    &__error-server_none
+        display: none
+    &__text
+        font-size: 20px
+        color: $light-black
+    &__input
+        width: 300px
+        border-radius: 0 24px 24px
+    &__btns
+        width: 100%
+        @include flexCenter
+        justify-content: space-between
+        align-items: flex-end
+        &_reg
+            @include flexCenter
+        span
+            font-size: 16px
+            cursor: pointer
+            color: $grey
+            position: relative
+            @include underline
+    &__to-reg
+        @include flexColumnCenter
+        div
+            font-size: 14px
+            color: $light-black
+        span
+            font-size: 14px
+            cursor: pointer
+            color: $grey
+            position: relative
+            @include underline
