@@ -1,11 +1,11 @@
 import { makeAutoObservable } from "mobx";
-import { IUser } from "./models/IUser";
-import AuthService from "./services/AuthService";
+import { IUser } from "../models/IUser";
+import AuthService from "../services/AuthService";
 import axios from 'axios';
-import { AuthResponse } from "./models/AuthResponse";
-import { API_URL } from "./http";
+import { AuthResponse } from "../models/AuthResponse";
+import { API_URL } from "../http";
 
-export default class Store {
+export default class AuthStore {
     user = {} as IUser;
     isAuth = false;
     logError = '';
@@ -39,7 +39,7 @@ export default class Store {
     async login(email: string, password: string) {
         try {
             const response = await AuthService.login(email, password);  
-            localStorage.setItem('token', response.data.accessToken);
+            localStorage.setItem('token', response.data.accessToken);  
             this.setAuth(true);
             this.setUser(response.data.user);
         } catch (error: any) {

@@ -1,9 +1,10 @@
-const PostService = require('../services/post-service');
+const TestModel = require('../models/test-model');
+const TestService = require('../services/test-service');
 
-class PostController {
+class TestController {
     async getAll(req, res, next) {
         try {
-            const item = await PostService.getAll();
+            const item = await TestService.getAll();
             return res.json(item);
         } catch (error) {
             next(error);
@@ -13,7 +14,7 @@ class PostController {
     async getOne(req, res, next) {
         try {
             const path = req.params.path;
-            const item = await PostService.getOne(path);
+            const item = await TestService.getOne(path);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -24,7 +25,7 @@ class PostController {
         try {
             const { text } = req.body;
             const path = req.params.path;
-            const item = await PostService.edit(path, text);
+            const item = await TestService.edit(path, text);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -35,7 +36,7 @@ class PostController {
         try {
             const path = req.params.path;
             const { text } = req.body;
-            const item = await PostService.create(String(path).toLocaleLowerCase(), text);
+            const item = await TestService.create(String(path).toLocaleLowerCase(), text);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -45,7 +46,7 @@ class PostController {
     async remove(req, res, next) {
         try {
             const path = req.params.path;
-            const item = await PostService.remove(path);
+            const item = await TestService.remove(path);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -53,4 +54,4 @@ class PostController {
     }
 }
 
-module.exports = new PostController();
+module.exports = new TestController();

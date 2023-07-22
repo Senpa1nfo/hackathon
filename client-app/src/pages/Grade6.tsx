@@ -1,10 +1,13 @@
+import SubjectList from '../components/SubjectList';
 import '../styles/pages/Grade6.sass';
 
 const Grade6 = () => {
     return (
-        <>
-            Grade6
-        </>
+        <main>
+            <div className="container">
+                <SubjectList grade="6"></SubjectList>           
+            </div>
+        </main>
     )
 }
 

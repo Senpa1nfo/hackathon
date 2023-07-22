@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 
 const Signin = observer(() => {
 
-    const {store} = useContext(Context);
+    const {storeAuth} = useContext(Context);
 
     const [name, setName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -45,32 +45,32 @@ const Signin = observer(() => {
     }, [emailError, nameError, passwordError, repeatPasswordError])
 
     useEffect(() => {
-        if (!store.logError) {
+        if (!storeAuth.logError) {
             document.querySelector('.signin__error_login')?.classList.remove('signin__error_login_active');
         } else {
             document.querySelector('.signin__error_login')?.classList.add('signin__error_login_active');
             setTimeout(() => {
-                store.setLogError('');
+                storeAuth.setLogError('');
             }, 5000)
         }
-        if (!store.regError) {
+        if (!storeAuth.regError) {
             document.querySelector('.signin__error_reg')?.classList.remove('signin__error_reg_active');
         } else {
             document.querySelector('.signin__error_reg')?.classList.add('signin__error_reg_active');
             setTimeout(() => {
-                store.setRegError('');
+                storeAuth.setRegError('');
             }, 5000)
         }
-        if (!store.resError) {
+        if (!storeAuth.resError) {
             document.querySelector('.signin__error_restore')?.classList.remove('signin__error_restore_active');
         } else {
             document.querySelector('.signin__error_restore')?.classList.add('signin__error_restore_active');
             setTimeout(() => {
-                store.setResError('');
+                storeAuth.setResError('');
             }, 5000)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [store.logError, store.regError, store.resError])
+    }, [storeAuth.logError, storeAuth.regError, storeAuth.resError])
 
     const toggleForm = () => {
         const signin = document.querySelector('#signin');
@@ -95,11 +95,11 @@ const Signin = observer(() => {
     }
 
     useEffect(() => {
-        if (store.isAuth) {
+        if (storeAuth.isAuth) {
             const sign = document.querySelector('.signin');
             sign?.classList.remove('signin_active');
         }
-    }, [store.isAuth])
+    }, [storeAuth.isAuth])
 
     const handleBlur = (event: any) => {
         switch (event.target.name) {
@@ -178,12 +178,12 @@ const Signin = observer(() => {
 
     const login = (event: any) => {
         event.preventDefault();
-        store.login(email, password);
+        storeAuth.login(email, password);
     }
 
     const registration = (event: any) => {
         event.preventDefault();
-        store.registration(name, email, password)
+        storeAuth.registration(name, email, password)
         .catch(res => console.log(res))
     }
 
@@ -229,7 +229,7 @@ const Signin = observer(() => {
                         />
                     </div>
                     <div className="signin__error signin__error_login">
-                        <span className="signin__error__span">{store.logError}</span>
+                        <span className="signin__error__span">{storeAuth.logError}</span>
                     </div>
                     <div className="signin__btns">
                         <button onClick={login} disabled={!validLogin}>Увійти</button>   
@@ -260,7 +260,7 @@ const Signin = observer(() => {
                         />
                     </div>
                     <div className="signin__error signin__error_restore">
-                        <span className="signin__error__span">{store.resError}</span>
+                        <span className="signin__error__span">{storeAuth.resError}</span>
                     </div>
                     <div className="signin__btns_reg">
                         <button onClick={sendMail} disabled={!validRestore}>Надіслати лист</button>     
@@ -338,7 +338,7 @@ const Signin = observer(() => {
                         />
                     </div>
                     <div className="signin__error signin__error_reg">
-                        <span className="signin__error__span">{store.regError}</span>
+                        <span className="signin__error__span">{storeAuth.regError}</span>
                     </div>
                     <div className="signin__btns_reg">
                         <button onClick={registration} disabled={!validRegistraion}>Зареєструватися</button>      

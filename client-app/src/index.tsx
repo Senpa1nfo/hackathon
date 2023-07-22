@@ -3,16 +3,25 @@ import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import Store from './store';
+import AuthStore from './stores/AuthStore';
+import SubjectStore from './stores/SubjectStore';
+import TestStore from './stores/TestStore';
 
 interface State {
-  store: Store,
+  storeAuth: AuthStore,
+  storeSubject: SubjectStore,
+  storeTest: TestStore
 }
 
-const store = new Store();
+const storeAuth = new AuthStore();
+const storeSubject = new SubjectStore();
+const storeTest = new TestStore();
+
 
 export const Context = createContext<State>({
-  store,
+  storeAuth,
+  storeSubject,
+  storeTest
 })
 
 const root = ReactDOM.createRoot(
@@ -20,7 +29,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Context.Provider value={{
-    store,
+    storeAuth,
+    storeSubject,
+    storeTest
   }}>
     <React.StrictMode>
       <BrowserRouter>

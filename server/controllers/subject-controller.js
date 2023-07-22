@@ -1,9 +1,9 @@
-const PostService = require('../services/post-service');
+const SubjectService = require('../services/subject-service');
 
-class PostController {
+class SubjectController {
     async getAll(req, res, next) {
         try {
-            const item = await PostService.getAll();
+            const item = await SubjectService.getAll();
             return res.json(item);
         } catch (error) {
             next(error);
@@ -13,7 +13,7 @@ class PostController {
     async getOne(req, res, next) {
         try {
             const path = req.params.path;
-            const item = await PostService.getOne(path);
+            const item = await SubjectService.getOne(path);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -22,9 +22,20 @@ class PostController {
 
     async edit(req, res, next) {
         try {
-            const { text } = req.body;
+            const { title, lessons } = req.body;
             const path = req.params.path;
-            const item = await PostService.edit(path, text);
+            const item = await SubjectService.edit(path, title, lessons);
+            return res.json(item);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    async updateProgress(req, res, next) {
+        try {
+            const { progress } = req.body;
+            const path = req.params.path;
+            const item = await SubjectService.updateProgress(path, progress);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -34,8 +45,8 @@ class PostController {
     async create(req, res, next) {
         try {
             const path = req.params.path;
-            const { text } = req.body;
-            const item = await PostService.create(String(path).toLocaleLowerCase(), text);
+            const { title, lessons } = req.body;
+            const item = await SubjectService.create(String(path).toLocaleLowerCase(), title, lessons);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -45,7 +56,7 @@ class PostController {
     async remove(req, res, next) {
         try {
             const path = req.params.path;
-            const item = await PostService.remove(path);
+            const item = await SubjectService.remove(path);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -53,4 +64,4 @@ class PostController {
     }
 }
 
-module.exports = new PostController();
+module.exports = new SubjectController();

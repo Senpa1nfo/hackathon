@@ -7,14 +7,15 @@ import { observer } from 'mobx-react-lite';
 
 const Header = observer(() => {
 
-    const {store} = useContext(Context);
+    const {storeAuth} = useContext(Context);
 
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-            store.checkAuth();
-        }     
-        console.log(store.isAuth);
-        
+        async function fetchData() {
+            if (localStorage.getItem('token')) {
+                await storeAuth.checkAuth();
+            }     
+        }
+        fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -61,10 +62,23 @@ const Header = observer(() => {
                             </div>
                         </nav>
                         <div className="header__login">
-                            {store.isAuth ? (
+                            {storeAuth.isAuth ? (
                                 <>
                                     <div className="header__user">Єгор</div>
-                                    <i onClick={() => store.logout()} className="fa-solid fa-right-from-bracket header__logout"></i>
+                                    {storeAuth.user.admin ? (
+                                        <div className="header__user__list header__user__list_admin">
+                                            <Link onClick={toggleNavbar} to="/profile">Профіль</Link>
+                                            <a href="/">Бібліотека</a>
+                                            <Link onClick={toggleNavbar} to="/admin-panel">Адмінка</Link>
+                                        </div>
+                                    ) : (
+                                        <div className="header__user__list">
+                                            <Link onClick={toggleNavbar} to="/profile">Профіль</Link>
+                                            <a href="/">Бібліотека</a>
+                                        </div>
+                                    )}
+                                    
+                                    <i onClick={() => storeAuth.logout()} className="fa-solid fa-right-from-bracket header__logout"></i>
                                 </>                                
                             ) : (
                                 <button onClick={() => {toggleModal(); toggleNavbar()}} className="btn">Увійти</button>
