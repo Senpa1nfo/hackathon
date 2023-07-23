@@ -3,11 +3,14 @@
     
 .header
     @include flexCenter
-    width: 100%
+    width: 100dvw
     height: 64px
     padding: 0 24px
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.4)
-    position: relative
+    position: fixed
+    top: 0
+    z-index: 3
+    background: $white
     *
         transition: all 0.2s
     &__wrapper
@@ -20,9 +23,10 @@
         align-items: center
         gap: 8px
         &__img
-            fill: $grey
+            fill: $light-black
             width: 28px
         &__text
+            color: $light-black
             font-size: 20px
             font-weight: 600
         &:hover
@@ -49,6 +53,7 @@
         color: $grey   
         position: relative
     &__user
+        color: $light-black
         &:hover
             color: $orange
         &:hover~&__list
@@ -77,6 +82,7 @@
             &:hover
                 height: 84px
     &__logout
+        color: $light-black
         &:hover
             color: $orange
     

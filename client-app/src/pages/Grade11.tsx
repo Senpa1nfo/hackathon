@@ -5,7 +5,9 @@ const Grade11 = () => {
     return (
         <main>
             <div className="container">
-                <SubjectList grade="11"></SubjectList>           
+                <div className="grade__list">
+                    <SubjectList grade="11" admin={false}></SubjectList>           
+                </div>           
             </div>
         </main>
     )

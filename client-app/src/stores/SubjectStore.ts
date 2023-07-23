@@ -58,7 +58,10 @@ export default class SubjectStore {
 
     async delete(path: string) {
         try {
-            await SubjectService.remove(path);
+            await SubjectService.remove(path)
+            .then(() => {
+                this.getAll();
+            });
         } catch (error) {
             console.log(error);           
         }
