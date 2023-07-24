@@ -4,6 +4,7 @@ import Signin from './Signin';
 import { Context } from '..';
 import { useContext, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
+import Loader from './Loader';
 
 const Header = observer(() => {
 
@@ -13,7 +14,9 @@ const Header = observer(() => {
         async function fetchData() {
             if (localStorage.getItem('token')) {
                 await storeAuth.checkAuth();
-            }     
+            } else {
+                storeAuth.setLoading(false);
+            }
         }
         fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,26 +65,32 @@ const Header = observer(() => {
                             </div>
                         </nav>
                         <div className="header__login">
-                            {storeAuth.isAuth ? (
-                                <>
-                                    <div className="header__user">Єгор</div>
-                                    {storeAuth.user.admin ? (
-                                        <div className="header__user__list header__user__list_admin">
-                                            <Link onClick={toggleNavbar} to="/profile">Профіль</Link>
-                                            <a href="/">Бібліотека</a>
-                                            <Link onClick={toggleNavbar} to="/admin-panel">Адмінка</Link>
-                                        </div>
-                                    ) : (
-                                        <div className="header__user__list">
-                                            <Link onClick={toggleNavbar} to="/profile">Профіль</Link>
-                                            <a href="/">Бібліотека</a>
-                                        </div>
-                                    )}
-                                    
-                                    <i onClick={() => storeAuth.logout()} className="fa-solid fa-right-from-bracket header__logout"></i>
-                                </>                                
+                            {storeAuth.isLoading ? (
+                                <Loader/>
                             ) : (
-                                <button onClick={() => {toggleModal(); toggleNavbar()}} className="btn">Увійти</button>
+                                <>
+                                    {storeAuth.isAuth ? (
+                                        <>
+                                            <div className="header__user">Єгор</div>
+                                            {storeAuth.user.admin ? (
+                                                <div className="header__user__list header__user__list_admin">
+                                                    <Link onClick={toggleNavbar} to="/profile">Профіль</Link>
+                                                    <a href="/">Бібліотека</a>
+                                                    <Link onClick={toggleNavbar} to="/admin-panel">Адмінка</Link>
+                                                </div>
+                                            ) : (
+                                                <div className="header__user__list">
+                                                    <Link onClick={toggleNavbar} to="/profile">Профіль</Link>
+                                                    <a href="/">Бібліотека</a>
+                                                </div>
+                                            )}
+                                            
+                                            <i onClick={() => storeAuth.logout()} className="fa-solid fa-right-from-bracket header__logout"></i>
+                                        </>                                
+                                    ) : (
+                                        <button onClick={() => {toggleModal(); toggleNavbar()}} className="btn">Увійти</button>
+                                    )}
+                                </>
                             )}
                         </div>
                     </div> 

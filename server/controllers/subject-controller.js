@@ -20,11 +20,22 @@ class SubjectController {
         }
     }
 
+    async create(req, res, next) {
+        try {
+            const path = req.params.path;
+            const { chapter } = req.body;
+            const item = await SubjectService.create(String(path).toLocaleLowerCase(), chapter);
+            return res.json(item);
+        } catch (error) {
+            next(error);
+        }
+    }
+
     async edit(req, res, next) {
         try {
-            const { title, lessons } = req.body;
+            const { chapter } = req.body;
             const path = req.params.path;
-            const item = await SubjectService.edit(path, title, lessons);
+            const item = await SubjectService.edit(path, chapter);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -36,17 +47,6 @@ class SubjectController {
             const { progress } = req.body;
             const path = req.params.path;
             const item = await SubjectService.updateProgress(path, progress);
-            return res.json(item);
-        } catch (error) {
-            next(error);
-        }
-    }
-
-    async create(req, res, next) {
-        try {
-            const path = req.params.path;
-            const { title, lessons } = req.body;
-            const item = await SubjectService.create(String(path).toLocaleLowerCase(), title, lessons);
             return res.json(item);
         } catch (error) {
             next(error);

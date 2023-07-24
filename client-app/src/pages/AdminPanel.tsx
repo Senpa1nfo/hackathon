@@ -1,12 +1,16 @@
 import { observer } from 'mobx-react-lite';
 import '../styles/pages/AdminPanel.sass';
 import SubjectList from '../components/SubjectList';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Chapter from '../components/Chapter';
+import { Context } from '..';
 
 const AdminPanel = observer(() => {
 
+    const {storeSubject} = useContext(Context);
+
     const [grade, setGrade] = useState('5');
+    const [chapterPath, setChapterPath] = useState('');
     const [isEditing, setIsEditin] = useState(false);
 
     useEffect(() => {
@@ -27,6 +31,11 @@ const AdminPanel = observer(() => {
         event.target.classList.add('admin__list__item_active'); 
         setGrade(grade);
         localStorage.setItem('grade', grade);
+    }
+
+    const addSubject = (event: any) => {
+        event.preventDefault();
+        storeSubject.create(storeSubject.chapter);
     }
 
     return (
@@ -50,15 +59,16 @@ const AdminPanel = observer(() => {
                                 <form action="" className="admin__form">
                                     <div className="admin__form__exit">
                                         <i onClick={() => {setIsEditin(false); localStorage.removeItem('editing')}} className="fa-solid fa-arrow-left-long"></i>
-                                        <input type="text" placeholder='url-адреса'/>
+                                        <input value={chapterPath} onChange={(event) => setChapterPath(event.target.value)} type="text" placeholder='url-адреса'/>
+                                        <button onClick={addSubject}>Додати</button>
                                     </div>
-                                    <Chapter></Chapter>                                                      
+                                    <Chapter path={chapterPath} grade={grade}></Chapter>                                                      
                                 </form>
                             </>
                         ) : (
                             <>
                                 <div className="admin__left-menu">
-                                    <button onClick={() => {setIsEditin(true); localStorage.setItem('editing', 'true')}}>Додати тему</button>
+                                    <button onClick={() => {setIsEditin(true); localStorage.setItem('editing', 'true')}}>Додати розділ</button>
                                 </div>
                                 <div className="admin__right-menu">
                                     <SubjectList grade={grade} admin={true}></SubjectList>

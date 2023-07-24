@@ -11,8 +11,18 @@ class SubjectService {
         return item;
     }
 
-    async edit(path, title, lessons) {
-        const item = await SubjectModel.findOneAndUpdate({ path }, { title, lessons } , {
+    async create(path, chapter) {
+        const subject = await SubjectModel.findOne({ path });
+        if (subject) {
+            return 'Тема с таким путём уже существует!';
+        }
+        const {grade, title, progress, paragraphs} = chapter;
+        const item = await SubjectModel.create({path, grade, title, progress, paragraphs});
+        return item;
+    }
+
+    async edit(path, title, paragraphs) {
+        const item = await SubjectModel.findOneAndUpdate({ path }, { title, paragraphs } , {
             new: true,
             upsert: true
         });
@@ -24,15 +34,6 @@ class SubjectService {
             new: true,
             upsert: true
         });
-        return item;
-    }
-
-    async create(path, title, lessons) {
-        const subject = await SubjectModel.findOne({ path });
-        if (subject) {
-            return 'Тема с таким путём уже существует!';
-        }
-        const item = await SubjectModel.create({ path, title, lessons });
         return item;
     }
 

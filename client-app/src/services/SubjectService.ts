@@ -10,10 +10,10 @@ export default class SubjectService {
     static async getOne(path: string): Promise<AxiosResponse<SubjectItem>> {
         return $api.get(`/subject/${path}`);
     }
-    static async create(path: string, title: string, lessons: object): Promise<void> {       
-        return $api.post(`/subject/create/${path}`, {title, lessons});
+    static async create(chapter: SubjectItem): Promise<void> {       
+        return $api.post(`/subject/create/${chapter.path}`, {chapter});
     }
-    static async edit(path: string, title: string, lessons: object): Promise<void> {
+    static async edit(path: string, title: string, lessons: Array<any>): Promise<void> {
         return $api.patch(`/subject/update/${path}`, {title, lessons});
     }
     static async updateProgress(path: string, progress: string): Promise<void> {
