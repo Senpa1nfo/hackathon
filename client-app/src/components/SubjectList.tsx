@@ -3,6 +3,7 @@ import { Context } from '..';
 import '../styles/components/SubjectList.sass';
 import { observer } from 'mobx-react-lite';
 import Loader from './Loader';
+import { useNavigate } from 'react-router-dom';
 
 interface SubjectProps {
     grade: string,
@@ -12,6 +13,13 @@ interface SubjectProps {
 const SubjectList = observer(({grade, admin}: SubjectProps) => {
 
     const {storeSubject} = useContext(Context);
+
+    const navigate = useNavigate();
+
+    const handleSelect = (path: string, id: number) => {
+        navigate(`/grade/${grade}/${path}/${id}`, {
+        });
+    };
 
     const handleToggleLessons = (path: string) => {
         document.querySelector(`#${path}`)?.classList.toggle('subject__lessons_active');
@@ -73,13 +81,13 @@ const SubjectList = observer(({grade, admin}: SubjectProps) => {
                                         </div>
                                         <div className="subject__title">{element.title}</div>
                                         <div className="subject__progress">
-                                            <span>Progress <strong>{element.progress}</strong>%</span>
+                                            <span>Прогрес <strong>{element.progress}</strong>%</span>
                                         </div>
                                     </div>
                                     <div id={element.path} className="subject__lessons">
-                                        {element.paragraphs.map((element, index) => (
-                                            <div key={element.id} className="subject__lesson">
-                                                <div className="subject__title">{element.title}</div>
+                                        {element.paragraphs.map((item, index) => (
+                                            <div key={item._id} className="subject__lesson">
+                                                <div className="subject__title" onClick={() => handleSelect(element.path, index + 1)}>{item.title}</div>
                                                 <button className="subject__test-btn">Почати тест</button>
                                             </div>
                                         ))}                           

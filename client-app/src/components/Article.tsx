@@ -20,7 +20,7 @@ const Article = observer(({pID, aID, tID}: ArticleProps) => {
         const article: ArticleItem = {
             title: input,
             text: textarea,
-            id: `${pID + '_' + aID}`
+            id: `${pID + '_' + aID}`,
         }
 
         let isExist = false;

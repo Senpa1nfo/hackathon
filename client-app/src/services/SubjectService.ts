@@ -1,13 +1,14 @@
 import $api from "../http";
 import {AxiosResponse} from 'axios';
 import { SubjectItem } from "../models/SubjectItem";
+import { SubjectItemGet } from "../models/SubjectItemGet";
 
 
 export default class SubjectService {
-    static async getAll(): Promise<AxiosResponse<Array<SubjectItem>>> {
+    static async getAll(): Promise<AxiosResponse<Array<SubjectItemGet>>> {
         return $api.get('/subject');
     }
-    static async getOne(path: string): Promise<AxiosResponse<SubjectItem>> {
+    static async getOne(path: string): Promise<AxiosResponse<SubjectItemGet>> {
         return $api.get(`/subject/${path}`);
     }
     static async create(chapter: SubjectItem): Promise<void> {       

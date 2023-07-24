@@ -1,10 +1,11 @@
 import { makeAutoObservable } from "mobx";
 import SubjectService from "../services/SubjectService";
 import { ArticleItem, ParagraphItem, SubjectItem } from "../models/SubjectItem";
+import { SubjectItemGet } from "../models/SubjectItemGet";
 
 export default class SubjectStore {
 
-    subjects = [] as Array<SubjectItem>;
+    subjects = [] as Array<SubjectItemGet>;
     articles = [] as Array<ArticleItem>;
     paragraphs = [] as Array<ParagraphItem>;
     chapter = {} as SubjectItem;
@@ -16,7 +17,7 @@ export default class SubjectStore {
         makeAutoObservable(this);
     }
 
-    setSubjects(subcjects: Array<SubjectItem>) {
+    setSubjects(subcjects: Array<SubjectItemGet>) {
         this.subjects = subcjects
     }
 
@@ -58,7 +59,7 @@ export default class SubjectStore {
         try {
             const response = await SubjectService.getOne(path);
             this.setLoading(false);
-            return response.data;
+            return response;
         } catch (error) {
             this.setLoading(false);
             console.log(error);           
@@ -99,5 +100,4 @@ export default class SubjectStore {
             console.log(error);           
         }
     }
-
 }

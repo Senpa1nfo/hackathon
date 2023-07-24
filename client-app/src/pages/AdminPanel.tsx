@@ -19,7 +19,7 @@ const AdminPanel = observer(() => {
         }
         if (localStorage.getItem('grade')) {
             setGrade(String(localStorage.getItem('grade')));
-            document.querySelector(`#grader_${String(localStorage.getItem('grade'))}`)?.classList.add('admin__list__item_active');
+            document.querySelector(`#grade_${String(localStorage.getItem('grade'))}`)?.classList.add('admin__list__item_active');
         }
     }, [])
 
@@ -44,13 +44,13 @@ const AdminPanel = observer(() => {
                 <div className="admin">
                     <div className="admin__menu">
                         <div className="admin__list">
-                            <div onClick={(event) => chooseTab(event, '5')} id='grader_5' className="admin__list__item">5 клас</div>
-                            <div onClick={(event) => chooseTab(event, '6')} id='grader_6' className="admin__list__item">6 клас</div>
-                            <div onClick={(event) => chooseTab(event, '7')} id='grader_7' className="admin__list__item">7 клас</div>
-                            <div onClick={(event) => chooseTab(event, '8')} id='grader_8' className="admin__list__item">8 клас</div>
-                            <div onClick={(event) => chooseTab(event, '9')} id='grader_9' className="admin__list__item">9 клас</div>
-                            <div onClick={(event) => chooseTab(event, '10')} id='grader_10' className="admin__list__item">10 клас</div>
-                            <div onClick={(event) => chooseTab(event, '11')} id='grader_11' className="admin__list__item">11 клас</div>
+                            <div onClick={(event) => chooseTab(event, '5')} id='grade_5' className="admin__list__item">5 клас</div>
+                            <div onClick={(event) => chooseTab(event, '6')} id='grade_6' className="admin__list__item">6 клас</div>
+                            <div onClick={(event) => chooseTab(event, '7')} id='grade_7' className="admin__list__item">7 клас</div>
+                            <div onClick={(event) => chooseTab(event, '8')} id='grade_8' className="admin__list__item">8 клас</div>
+                            <div onClick={(event) => chooseTab(event, '9')} id='grade_9' className="admin__list__item">9 клас</div>
+                            <div onClick={(event) => chooseTab(event, '10')} id='grade_10' className="admin__list__item">10 клас</div>
+                            <div onClick={(event) => chooseTab(event, '11')} id='grade_11' className="admin__list__item">11 клас</div>
                         </div>
                     </div>
                     <div className="admin__workspace">

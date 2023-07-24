@@ -19,7 +19,7 @@ const Paragraph = observer(({pID, aID, tID}: ParagraphProps) => {
         const paragraph: ParagraphItem = {
             title: input,
             articles: storeSubject.articles.filter(element => element.id.slice(0, 1) === pID),
-            id: `${pID}`
+            id: `${pID}`,
         }
         
         let isExist = false;
