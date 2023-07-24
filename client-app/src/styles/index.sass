@@ -5,6 +5,18 @@
     padding: 0
     box-sizing: border-box
     font-family: 'Poppins', sans-serif
+html 
+  overflow-x: hidden
+  margin-right: calc(-1 * (100vw - 100%))
+body
+    padding-top: 64px
+main
+    @include flexColumnCenter
+    justify-content: space-between
+    background: $white
+    height: calc(100dvh - 64px)
+    padding: 32px
+    overflow: auto
 .container
     width: 100%
     margin: 0 auto
@@ -25,21 +37,31 @@ button
     &:hover
         background: $orange
         color: $white
-input
+input, select, textarea
     font-size: 16px
     padding: 8px 12px
     outline-color: $orange
     border: 2px solid $grey
     border-radius: 24px
+    background: $white
+    color: $light-black
 a
     text-decoration: none
     color: $grey
     position: relative
 
+::-webkit-scrollbar
+    width: 8px
+
+::-webkit-scrollbar-thumb
+    background: #6f6f6f
+    border-radius: 4px 
+
+@media screen and (max-width: 992px) 
+    ::-webkit-scrollbar
+        width: 0
 @media screen and (max-width: 768px) 
-    main
-        padding: 24px
-    
+
 @media screen and (min-width: 576px) 
 
 @media screen and (min-width: 768px) 

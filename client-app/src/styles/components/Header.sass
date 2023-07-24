@@ -3,11 +3,14 @@
     
 .header
     @include flexCenter
-    width: 100%
+    width: 100dvw
     height: 64px
     padding: 0 24px
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4)
-    position: relative
+    box-shadow: 0 0 6px $box-shadow
+    position: fixed
+    top: 0
+    z-index: 3
+    background: $white
     *
         transition: all 0.2s
     &__wrapper
@@ -20,9 +23,10 @@
         align-items: center
         gap: 8px
         &__img
-            fill: $grey
+            fill: $light-black
             width: 28px
         &__text
+            color: $light-black
             font-size: 20px
             font-weight: 600
         &:hover
@@ -39,6 +43,10 @@
             a
                 font-size: 20px  
                 @include underline
+        &__link
+            cursor: pointer
+            &_active
+                color: $orange
     .btn
         transition: all 0.4s   
     &__login
@@ -49,6 +57,7 @@
         color: $grey   
         position: relative
     &__user
+        color: $light-black
         &:hover
             color: $orange
         &:hover~&__list
@@ -61,7 +70,7 @@
             height: 0
             border-radius: 0 0 16px 16px
             background: $white
-            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2)
+            box-shadow: 0 4px 6px -2px $box-shadow
             position: absolute
             top: 100%
             transition: all 0.5s
@@ -77,6 +86,7 @@
             &:hover
                 height: 84px
     &__logout
+        color: $light-black
         &:hover
             color: $orange
     

@@ -2,9 +2,9 @@ import '../styles/pages/Main.sass';
 
 const Main = () => {
     return (
-        <>
-            Main
-        </>
+        <main>
+
+        </main>
     )
 }
 

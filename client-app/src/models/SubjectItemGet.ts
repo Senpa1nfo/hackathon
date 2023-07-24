@@ -2,15 +2,17 @@ export interface ArticleItem {
     title: string;
     text: string;
     id: string;
+    _id: string;
 }
 
 export interface ParagraphItem {
     title: string;
     articles: ArticleItem[];
     id: string;
+    _id: string;
 }
 
-export interface SubjectItem {
+export interface SubjectItemGet {
     path: string;
     grade: string;
     title: string;

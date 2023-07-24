@@ -8,6 +8,7 @@ import { API_URL } from "../http";
 export default class AuthStore {
     user = {} as IUser;
     isAuth = false;
+    isLoading = true;
     logError = '';
     regError = '';
     resError = '';
@@ -18,6 +19,10 @@ export default class AuthStore {
 
     setAuth(bool: boolean) {
         this.isAuth = bool;
+    }
+
+    setLoading(isLoading: boolean) {
+        this.isLoading = isLoading;
     }
 
     setUser(user: IUser) {
@@ -87,7 +92,9 @@ export default class AuthStore {
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true);
             this.setUser(response.data.user);
+            this.setLoading(false);
         } catch (error) {
+            this.setLoading(false);
             console.log(error);
         }
     }

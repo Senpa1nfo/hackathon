@@ -3,11 +3,9 @@
     
 .subject
     color: $light-black
-    margin-top: 20px
     width: 100%
     border-radius: 24px
-    // border: 2px solid $grey
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3)
+    box-shadow: 0 0 6px $box-shadow
     @include flexColumnCenter
     font-size: 18px
     -webkit-user-select: none
@@ -16,11 +14,18 @@
     user-select: none
     &__header
         width: 100%
-        padding: 20px 24px
+        padding: 16px
         @include flexCenter
         justify-content: space-between
         cursor: pointer
         line-height: 20px
+        position: relative
+        &_admin
+            cursor: default
+            -webkit-user-select: text
+            -moz-user-select: text
+            -ms-user-select: text
+            user-select: text
         &:hover .subject__title
             color: $orange
         .subject__title
@@ -43,16 +48,21 @@
         width: calc(100% - 130px)
         padding: 0 24px
         text-indent: -24px
+        line-height: 32px
+        cursor: pointer
         &:hover
             color: $orange
+        &_admin
+            width: calc(100% - 50px)
+            text-indent: 0
+            cursor: text
     &__lesson
         font-size: 16px
         width: 100%
-        padding: 16px 0
+        padding: 12px 0
         border-top: 1px dashed $grey
         @include flexCenter
         justify-content: space-between
-        cursor: pointer
     &__test-btn
         width: 130px
         height: 32px
@@ -61,6 +71,49 @@
         width: 128px
         position: relative
         color: $blue
+    &__btns
+        @include flexCenter
+        gap: 16px
+        i
+            color: $light-black
+            cursor: pointer
+        &_edit
+            &:hover
+                color: $orange
+        &_delete
+            &:hover
+                color: $red
+    &__delete
+        position: absolute
+        z-index: 2
+        width: 440px
+        height: 140px
+        border-radius: 16px 
+        background: $white
+        box-shadow: 0 0 6px $box-shadow
+        padding: 0 16px
+        gap: 16px
+        display: none
+        color: $light-black
+        button
+            border-color: $red
+            color: $red
+            &:hover
+                background: $red
+                color: $white
+        &_active
+            @include flexColumnCenter  
+            justify-content: flex-end
+            padding-bottom: 16px
+        i
+            cursor: pointer
+            font-size: 20px
+            position: absolute
+            top: 12px
+            right: 12px
+            transition: all 0.2s
+            &:hover
+                color: $red
         
 @media screen and (max-width: 576px) 
     .subject
@@ -68,7 +121,8 @@
             flex-direction: column
             align-items: flex-start
             justify-content: center
-            gap: 20px
+            padding: 12px 16px
+            gap: 8px
             .subject__title
                 width: 100%
                 padding: 0 0 0 48px

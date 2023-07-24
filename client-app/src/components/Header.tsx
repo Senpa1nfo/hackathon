@@ -1,11 +1,19 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import '../styles/components/Header.sass';
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Signin from './Signin';
 import { Context } from '..';
 import { useContext, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
+import Loader from './Loader';
 
 const Header = observer(() => {
+
+    const navigate = useNavigate();
+    const handleSelect = (grade: string) => {
+            navigate(`/grade/${grade}`, {
+        });
+    };
 
     const {storeAuth} = useContext(Context);
 
@@ -13,7 +21,9 @@ const Header = observer(() => {
         async function fetchData() {
             if (localStorage.getItem('token')) {
                 await storeAuth.checkAuth();
-            }     
+            } else {
+                storeAuth.setLoading(false);
+            }
         }
         fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,36 +62,42 @@ const Header = observer(() => {
                         </Link>
                         <nav className='header__navbar'>
                             <div className='header__navbar__list'>
-                                <Link onClick={toggleNavbar} to="/grade-5">5 клас</Link>
-                                <Link onClick={toggleNavbar} to="/grade-6">6 клас</Link>
-                                <Link onClick={toggleNavbar} to="/grade-7">7 клас</Link>
-                                <Link onClick={toggleNavbar} to="/grade-8">8 клас</Link>
-                                <Link onClick={toggleNavbar} to="/grade-9">9 клас</Link>
-                                <Link onClick={toggleNavbar} to="/grade-10">10 клас</Link>
-                                <Link onClick={toggleNavbar} to="/grade-11">11 клас</Link>
+                                <a onClick={() => handleSelect('5')} className='header__navbar__link'>5 клас</a>
+                                <a onClick={() => handleSelect('6')} className='header__navbar__link'>6 клас</a>
+                                <a onClick={() => handleSelect('7')} className='header__navbar__link'>7 клас</a>
+                                <a onClick={() => handleSelect('8')} className='header__navbar__link'>8 клас</a>
+                                <a onClick={() => handleSelect('9')} className='header__navbar__link'>9 клас</a>
+                                <a onClick={() => handleSelect('10')} className='header__navbar__link'>10 клас</a>
+                                <a onClick={() => handleSelect('11')} className='header__navbar__link'>11 клас</a>
                             </div>
                         </nav>
                         <div className="header__login">
-                            {storeAuth.isAuth ? (
-                                <>
-                                    <div className="header__user">Єгор</div>
-                                    {storeAuth.user.admin ? (
-                                        <div className="header__user__list header__user__list_admin">
-                                            <Link onClick={toggleNavbar} to="/profile">Профіль</Link>
-                                            <a href="/">Бібліотека</a>
-                                            <Link onClick={toggleNavbar} to="/admin-panel">Адмінка</Link>
-                                        </div>
-                                    ) : (
-                                        <div className="header__user__list">
-                                            <Link onClick={toggleNavbar} to="/profile">Профіль</Link>
-                                            <a href="/">Бібліотека</a>
-                                        </div>
-                                    )}
-                                    
-                                    <i onClick={() => storeAuth.logout()} className="fa-solid fa-right-from-bracket header__logout"></i>
-                                </>                                
+                            {storeAuth.isLoading ? (
+                                <Loader/>
                             ) : (
-                                <button onClick={() => {toggleModal(); toggleNavbar()}} className="btn">Увійти</button>
+                                <>
+                                    {storeAuth.isAuth ? (
+                                        <>
+                                            <div className="header__user">Єгор</div>
+                                            {storeAuth.user.admin ? (
+                                                <div className="header__user__list header__user__list_admin">
+                                                    <Link onClick={toggleNavbar} to="/profile">Профіль</Link>
+                                                    <a href="/">Бібліотека</a>
+                                                    <Link onClick={toggleNavbar} to="/admin-panel">Адмінка</Link>
+                                                </div>
+                                            ) : (
+                                                <div className="header__user__list">
+                                                    <Link onClick={toggleNavbar} to="/profile">Профіль</Link>
+                                                    <a href="/">Бібліотека</a>
+                                                </div>
+                                            )}
+                                            
+                                            <i onClick={() => storeAuth.logout()} className="fa-solid fa-right-from-bracket header__logout"></i>
+                                        </>                                
+                                    ) : (
+                                        <button onClick={() => {toggleModal(); toggleNavbar()}} className="btn">Увійти</button>
+                                    )}
+                                </>
                             )}
                         </div>
                     </div> 
