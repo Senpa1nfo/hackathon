@@ -2,10 +2,10 @@
 @import '../mixins'   
     
 .subject
-    color: $light-black
+    color: var(--light-black)
     width: 100%
     border-radius: 24px
-    box-shadow: 0 0 6px $box-shadow
+    box-shadow: 0 0 6px var(--box-shadow)
     @include flexColumnCenter
     font-size: 18px
     -webkit-user-select: none
@@ -27,7 +27,7 @@
             -ms-user-select: text
             user-select: text
         &:hover .subject__title
-            color: $orange
+            color: var(--orange)
         .subject__title
             font-weight: 500
             width: calc(100% - 140px)
@@ -51,7 +51,7 @@
         line-height: 32px
         cursor: pointer
         &:hover
-            color: $orange
+            color: var(--orange)
         &_admin
             width: calc(100% - 50px)
             text-indent: 0
@@ -60,7 +60,7 @@
         font-size: 16px
         width: 100%
         padding: 12px 0
-        border-top: 1px dashed $grey
+        border-top: 1px dashed var(--grey)
         @include flexCenter
         justify-content: space-between
     &__test-btn
@@ -70,37 +70,37 @@
     &__progress
         width: 128px
         position: relative
-        color: $blue
+        color: var(--blue)
     &__btns
         @include flexCenter
         gap: 16px
         i
-            color: $light-black
+            color: var(--light-black)
             cursor: pointer
         &_edit
             &:hover
-                color: $orange
+                color: var(--light-blue)
         &_delete
             &:hover
-                color: $red
+                color: var(--red)
     &__delete
         position: absolute
         z-index: 2
         width: 440px
         height: 140px
         border-radius: 16px 
-        background: $white
-        box-shadow: 0 0 6px $box-shadow
+        background: var(--white)
+        box-shadow: 0 0 6px var(--box-shadow)
         padding: 0 16px
         gap: 16px
         display: none
-        color: $light-black
+        color: var(--light-black)
         button
-            border-color: $red
-            color: $red
+            border-color: var(--red)
+            color: var(--red)
             &:hover
-                background: $red
-                color: $white
+                background: var(--red)
+                color: var(--white)
         &_active
             @include flexColumnCenter  
             justify-content: flex-end
@@ -113,7 +113,7 @@
             right: 12px
             transition: all 0.2s
             &:hover
-                color: $red
+                color: var(--red)
         
 @media screen and (max-width: 576px) 
     .subject

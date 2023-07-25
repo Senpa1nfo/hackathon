@@ -13,9 +13,9 @@ body
 main
     @include flexColumnCenter
     justify-content: space-between
-    background: $white
+    background: var(--white)
     height: calc(100dvh - 64px)
-    padding: 32px
+    padding: 20px
     overflow: auto
 .container
     width: 100%
@@ -28,26 +28,26 @@ button
     font-weight: 500
     cursor: pointer
     outline: none
-    border: 2px solid $orange
-    background: $white
-    color: $orange
+    border: 2px solid var(--orange)
+    background: var(--white)
+    color: var(--orange)
     transition: all 0.4s 
     font-weight: 600
     letter-spacing: 0.8px
     &:hover
-        background: $orange
-        color: $white
+        background: var(--orange)
+        color: var(--white)
 input, select, textarea
     font-size: 16px
     padding: 8px 12px
-    outline-color: $orange
-    border: 2px solid $grey
+    outline-color: var(--orange)
+    border: 2px solid var(--grey)
     border-radius: 24px
-    background: $white
-    color: $light-black
+    background: var(--white)
+    color: var(--light-black)
 a
     text-decoration: none
-    color: $grey
+    color: var(--grey)
     position: relative
 
 ::-webkit-scrollbar

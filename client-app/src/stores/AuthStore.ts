@@ -12,6 +12,7 @@ export default class AuthStore {
     logError = '';
     regError = '';
     resError = '';
+    theme = 'light';
 
     constructor() {
         makeAutoObservable(this);
@@ -39,6 +40,16 @@ export default class AuthStore {
 
     setResError(error: any) {
         this.resError = error;
+    }
+
+    toggleTheme() {
+        if (this.theme === 'light') {
+            this.theme = 'dark';         
+        } else {
+            this.theme = 'light';  
+        }
+        document.documentElement.setAttribute('data-theme', this.theme);
+        localStorage.setItem('theme', this.theme);
     }
 
     async login(email: string, password: string) {

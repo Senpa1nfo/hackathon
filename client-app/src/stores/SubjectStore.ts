@@ -68,7 +68,10 @@ export default class SubjectStore {
 
     async create(chapter: SubjectItem) {
         try {
-            await SubjectService.create(chapter);
+            await SubjectService.create(chapter)
+            .then(() => {
+                this.getAll();
+            });
         } catch (error) {
             console.log(error);           
         }

@@ -1,21 +1,21 @@
 @import '../mixins'
 @import '../variables'
-    
+
 .header
     @include flexCenter
     width: 100dvw
     height: 64px
     padding: 0 24px
-    box-shadow: 0 0 6px $box-shadow
+    box-shadow: 0 0 6px var(--box-shadow)
     position: fixed
     top: 0
     z-index: 3
-    background: $white
+    background: var(--white)
     *
         transition: all 0.2s
     &__wrapper
         @include flexCenter
-        justify-content: space-between
+        gap: 20px
     &__logo
         cursor: pointer
         display: flex
@@ -23,18 +23,18 @@
         align-items: center
         gap: 8px
         &__img
-            fill: $light-black
+            fill: var(--light-black)
             width: 28px
         &__text
-            color: $light-black
+            color: var(--light-black)
             font-size: 20px
             font-weight: 600
         &:hover
-            color: $orange
+            color: var(--orange)
         &:hover .header__logo__img    
-            fill: $orange     
+            fill: var(--orange)     
     &__navbar
-        width: 800px
+        width: 720px
         &__list
             @include flexCenter
             width: 100%
@@ -46,20 +46,24 @@
         &__link
             cursor: pointer
             &_active
-                color: $orange
+                color: var(--orange)
     .btn
         transition: all 0.4s   
+    &__switcher
+        cursor: pointer
+        width: 24px
+        height: 24px
     &__login
         cursor: pointer
         @include flexCenter  
         gap: 12px
         font-size: 28px
-        color: $grey   
+        color: var(--grey)   
         position: relative
     &__user
-        color: $light-black
+        color: var(--light-black)
         &:hover
-            color: $orange
+            color: var(--orange)
         &:hover~&__list
             height: 68px
         &:hover~&__list_admin
@@ -69,8 +73,8 @@
             width: 112px
             height: 0
             border-radius: 0 0 16px 16px
-            background: $white
-            box-shadow: 0 4px 6px -2px $box-shadow
+            background: var(--white)
+            box-shadow: 0 4px 6px -2px var(--box-shadow)
             position: absolute
             top: 100%
             transition: all 0.5s
@@ -86,9 +90,9 @@
             &:hover
                 height: 84px
     &__logout
-        color: $light-black
+        color: var(--light-black)
         &:hover
-            color: $orange
+            color: var(--orange)
     
 @media screen and (max-width: 1400px)
 
@@ -131,7 +135,7 @@
         div
             width: 100%
             height: 2px
-            background: $black
+            background: var(--black)
             border-radius: 4px 
             transition: 1s
         &_active
@@ -150,7 +154,7 @@
         z-index: 2
         width: 100dvw
         height: 100dvh
-        background: $white
+        background: var(--white)
         &__list
             @include flexColumnCenter
             height: 200px

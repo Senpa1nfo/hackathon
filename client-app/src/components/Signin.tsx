@@ -72,6 +72,13 @@ const Signin = observer(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeAuth.logError, storeAuth.regError, storeAuth.resError])
 
+    useEffect(() => {
+        if (storeAuth.isAuth) {
+            const sign = document.querySelector('.signin');
+            sign?.classList.remove('signin_active');
+        }
+    }, [storeAuth.isAuth])
+
     const toggleForm = () => {
         const signin = document.querySelector('#signin');
         const signup = document.querySelector('#signup');
@@ -93,13 +100,6 @@ const Signin = observer(() => {
             sign?.classList.toggle('signin_active');
         }        
     }
-
-    useEffect(() => {
-        if (storeAuth.isAuth) {
-            const sign = document.querySelector('.signin');
-            sign?.classList.remove('signin_active');
-        }
-    }, [storeAuth.isAuth])
 
     const handleBlur = (event: any) => {
         switch (event.target.name) {

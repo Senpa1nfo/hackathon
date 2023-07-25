@@ -10,6 +10,16 @@ import AdminPanel from "./pages/AdminPanel";
 import GradeParagraph from "./pages/GradeParagraph";
 
 function App() {
+  const {storeAuth} = useContext(Context);
+
+  useEffect(() => {
+    if (localStorage.getItem('theme')) {
+      document.documentElement.setAttribute('data-theme', String(localStorage.getItem('theme')));      
+    } else {
+      document.documentElement.setAttribute('data-theme', storeAuth.theme);
+      localStorage.setItem('theme', storeAuth.theme);
+    }
+  }, [])
 
   const {storeSubject} = useContext(Context);
 

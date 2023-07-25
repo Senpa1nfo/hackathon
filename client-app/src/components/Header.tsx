@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import '../styles/components/Header.sass';
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Signin from './Signin';
 import { Context } from '..';
 import { useContext, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import Loader from './Loader';
+import sun from '../icons/light_theme_icon.svg';
+import moon from '../icons/dark_theme_icon.svg';
 
 const Header = observer(() => {
 
@@ -44,6 +46,10 @@ const Header = observer(() => {
         signin?.classList.toggle('signin_active');
     }
 
+    const switchTheme = () => {
+        storeAuth.toggleTheme();
+    }
+
     return (
         <>
             <header className='header'> 
@@ -71,6 +77,11 @@ const Header = observer(() => {
                                 <a onClick={() => handleSelect('11')} className='header__navbar__link'>11 клас</a>
                             </div>
                         </nav>
+                        {storeAuth.theme === 'light' ? (
+                            <img className='header__switcher' onClick={switchTheme} src={moon} alt='moon'/>
+                        ) : (
+                            <img className='header__switcher' onClick={switchTheme} src={sun} alt='sun'/>
+                        )}
                         <div className="header__login">
                             {storeAuth.isLoading ? (
                                 <Loader/>
@@ -78,7 +89,7 @@ const Header = observer(() => {
                                 <>
                                     {storeAuth.isAuth ? (
                                         <>
-                                            <div className="header__user">Єгор</div>
+                                            <div className="header__user">{storeAuth.user.name}</div>
                                             {storeAuth.user.admin ? (
                                                 <div className="header__user__list header__user__list_admin">
                                                     <Link onClick={toggleNavbar} to="/profile">Профіль</Link>

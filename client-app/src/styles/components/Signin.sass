@@ -14,12 +14,13 @@
         @include flexCenter
     &__wrapper
         padding: 40px
-        background: $white
+        background: var(white)
         border-radius: 32px 
         @include flexCenter
         position: relative
         overflow: hidden
         transition: all 0.4s
+        box-shadow: 0 0 6px var(box-shadow)
     &__form
         display: none
         gap: 20px
@@ -31,14 +32,14 @@
         align-items: start
         gap: 4px
         label
-            color: $light-black
+            color: var(light-black)
             line-height: 16px
     &__error
         @include flexCenter
         gap: 8px
         span          
             font-size: 14px
-            color: $red
+            color: var(red)
         &_login, &_reg, &_restore
             width: 300px
             display: none
@@ -50,7 +51,7 @@
         display: none
     &__text
         font-size: 20px
-        color: $light-black
+        color: var(light-black)
     &__input
         width: 300px
         border-radius: 0 24px 24px
@@ -64,17 +65,17 @@
         span
             font-size: 16px
             cursor: pointer
-            color: $grey
+            color: var(grey)
             position: relative
             @include underline
     &__to-reg
         @include flexColumnCenter
         div
             font-size: 14px
-            color: $light-black
+            color: var(light-black)
         span
             font-size: 14px
             cursor: pointer
-            color: $grey
+            color: var(grey)
             position: relative
             @include underline
