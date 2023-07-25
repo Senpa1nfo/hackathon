@@ -77,7 +77,7 @@ const Header = observer(() => {
                                 <a onClick={() => handleSelect('11')} className='header__navbar__link'>11 клас</a>
                             </div>
                         </nav>
-                        {storeAuth.theme === 'light' ? (
+                        {storeAuth.theme !== 'dark' ? (
                             <img className='header__switcher' onClick={switchTheme} src={moon} alt='moon'/>
                         ) : (
                             <img className='header__switcher' onClick={switchTheme} src={sun} alt='sun'/>
