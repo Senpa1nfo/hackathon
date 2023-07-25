@@ -18,7 +18,7 @@ app.use(cookiePaser());
 app.use(filePathMiddleware(path.resolve(__dirname, 'images')));
 app.use(cors({
 	credentials: true,
-	origin: process.env.CLIENT_URL
+	origin: [process.env.CLIENT_URL, 'http://212.224.118.153:8080']
 }));
 app.use(router);
 app.use(errorMiddleware);

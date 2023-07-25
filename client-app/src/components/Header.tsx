@@ -68,13 +68,13 @@ const Header = observer(() => {
                         </Link>
                         <nav className='header__navbar'>
                             <div className='header__navbar__list'>
-                                <a onClick={() => handleSelect('5')} className='header__navbar__link'>5 клас</a>
-                                <a onClick={() => handleSelect('6')} className='header__navbar__link'>6 клас</a>
-                                <a onClick={() => handleSelect('7')} className='header__navbar__link'>7 клас</a>
-                                <a onClick={() => handleSelect('8')} className='header__navbar__link'>8 клас</a>
-                                <a onClick={() => handleSelect('9')} className='header__navbar__link'>9 клас</a>
-                                <a onClick={() => handleSelect('10')} className='header__navbar__link'>10 клас</a>
-                                <a onClick={() => handleSelect('11')} className='header__navbar__link'>11 клас</a>
+                                <a onClick={() => {handleSelect('5'); toggleNavbar()}} className='header__navbar__link'>5 клас</a>
+                                <a onClick={() => {handleSelect('6'); toggleNavbar()}} className='header__navbar__link'>6 клас</a>
+                                <a onClick={() => {handleSelect('7'); toggleNavbar()}} className='header__navbar__link'>7 клас</a>
+                                <a onClick={() => {handleSelect('8'); toggleNavbar()}} className='header__navbar__link'>8 клас</a>
+                                <a onClick={() => {handleSelect('9'); toggleNavbar()}} className='header__navbar__link'>9 клас</a>
+                                <a onClick={() => {handleSelect('10'); toggleNavbar()}} className='header__navbar__link'>10 клас</a>
+                                <a onClick={() => {handleSelect('11'); toggleNavbar()}} className='header__navbar__link'>11 клас</a>
                             </div>
                         </nav>
                         {storeAuth.theme !== 'dark' ? (
@@ -101,8 +101,7 @@ const Header = observer(() => {
                                                     <Link onClick={toggleNavbar} to="/profile">Профіль</Link>
                                                     <a href="/">Бібліотека</a>
                                                 </div>
-                                            )}
-                                            
+                                            )}                                           
                                             <i onClick={() => storeAuth.logout()} className="fa-solid fa-right-from-bracket header__logout"></i>
                                         </>                                
                                     ) : (

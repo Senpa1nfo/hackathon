@@ -14,7 +14,8 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem('theme')) {
-      document.documentElement.setAttribute('data-theme', String(localStorage.getItem('theme')));      
+      document.documentElement.setAttribute('data-theme', String(localStorage.getItem('theme')));  
+      storeAuth.theme = String(localStorage.getItem('theme'));
     } else {
       document.documentElement.setAttribute('data-theme', storeAuth.theme);
       localStorage.setItem('theme', storeAuth.theme);
