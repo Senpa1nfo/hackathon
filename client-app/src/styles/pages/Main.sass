@@ -1,0 +1,260 @@
+@import '../mixins'
+@import '../variables'
+
+.main
+	&__wrapper
+		width: 100%
+		border-radius: 10px
+		fill: none
+		@include flexColumnCenter
+		gap: 20px
+		&__card
+			width: 400px
+			overflow: hidden
+	&__title
+		color: var(--orange)
+		font-size: 32px
+		line-height: 40px
+		text-align: center
+		font-weight: 800
+		animation: title-text 2s
+	&__subtitle 
+		color: var(--light-black)
+		font-size: 24px
+		line-height: 44px
+		text-align: center
+		font-weight: 700
+		animation: title-text 2s
+	&__block
+		position: relative
+		@include flexColumnCenter
+		gap: 16px
+	&__item
+		@include flexCenter
+		gap: 96px
+	&__text
+		@include flexCenter
+		text-align: center
+		width: 400px
+		height: 150px
+		font-size: 24px
+		color: var(--light-black)
+		font-weight: 600
+		opacity: 0
+		padding: 8px 16px
+		&_1
+			animation: right-to-left 1.2s ease-in-out forwards
+			animation-delay: 1.6s
+		&_2
+			animation: left-to-right 1.2s ease-in-out forwards
+			animation-delay: 2.5s
+		&_3
+			animation: right-to-left 1.2s ease-in-out forwards
+			animation-delay: 3.45s
+		&_4
+			animation: left-to-right 1.2s ease-in-out forwards
+			animation-delay: 4.4s
+	&__card
+		font-size: 15px
+		@include flexCenter
+		flex-wrap: wrap
+		justify-content: flex-end
+		width: 100%
+		height: 150px
+		padding: 8px 16px
+		border-radius: 16px
+		border: 2px solid var(--orange)
+		transform: translateX(-100%)
+		&__text
+			font-size: 16px
+			font-weight: 400
+			width: 100%
+			color: var(--light-black)
+			text-align: center
+			@include flexColumnCenter
+			gap: 8px
+		span
+			display: block
+			font-size: 18px
+			color: var(--orange)
+		&_1
+			animation: showBlock 1.2s ease-in-out forwards
+			animation-delay: 2.1s
+		&_2
+			transform: translateX(100%)
+			animation: showBlock 1.2s ease-in-out forwards
+			animation-delay: 3s
+		&_3
+			animation: showBlock 1.2s ease-in-out forwards
+			animation-delay: 3.95s
+		&_4
+			transform: translateX(100%)
+			animation: showBlock 1.2s ease-in-out forwards
+			animation-delay: 4.9s
+	&__link
+		color: var(--grey)
+		position: relative
+		@include underline()
+		&:hover
+			color: var(--orange)
+	&__timeline
+		position: absolute
+		top: 0
+		left: 50%
+		transform: translateX(-50%)
+		width: 2px
+		background: var(--orange)
+		height: 0
+		border-radius: 4px
+		animation: timeline 3.6s linear forwards
+		animation-delay: 1.2s
+	&__arrow
+		position: absolute
+		width: 0
+		height: 2px
+		background: var(--orange)
+		border-radius: 4px
+		&:nth-child(1)
+			top: 75px
+			animation: arrow 0.5s linear forwards
+			animation-delay: 1.6s
+		&:nth-child(2)
+			top: 237px
+			left: 50%
+			transform: translateX(-100%)
+			animation: arrow 0.5s linear forwards
+			animation-delay: 2.5s
+		&:nth-child(3)
+			top: 406px
+			animation: arrow 0.5s linear forwards
+			animation-delay: 3.45s
+		&:nth-child(4)			
+			top: 570px
+			left: 50%
+			transform: translateX(-100%)
+			animation: arrow 0.5s linear forwards
+			animation-delay: 4.4s
+
+@keyframes arrow
+	100%
+		width: 40px
+@keyframes smallArrow
+	100%
+		width: 30px
+
+@keyframes timeline
+	100%
+		height: 100%
+
+@keyframes title-text
+	0%
+		opacity: 0
+	100%
+		opacity: 1
+
+@keyframes left-to-right
+	0%
+		opacity: 0
+		transform: translateX(500px)	
+	100%
+		opacity: 1
+		transform: translateX(0)
+
+@keyframes right-to-left
+	0%
+		opacity: 0
+		transform: translateX(-500px)
+	100%
+		opacity: 1
+		transform: translateX(0)
+	
+@keyframes showBlock
+	100%
+		transform: translateX(0)
+		
+
+@media screen and (max-width: 992px) 
+	.main
+		&__wrapper
+			&__card
+				width: 300px
+		&__card
+			width: 300px
+		&__text
+			width: 300px
+			font-size: 20px
+
+@media screen and (max-width: 768px) 
+	.main
+		&__wrapper
+			gap: 0
+		&__title
+			font-size: 28px
+		&__subtitle
+			font-size: 24px
+		&__block
+			gap: 0
+		&__item
+			flex-direction: column
+			gap: 0
+		&__wrapper__card
+			order: 2
+		&__card
+			&_2
+				transform: translateX(-100%)
+			&_4
+				transform: translateX(-100%)
+		&__text
+			order: 1
+			&_1
+				animation-name: left-to-right
+			&_3
+				animation-name: left-to-right
+		&__timeline
+			transform: translateX(calc( -50% - 210px ))
+		&__arrow
+			&:nth-child(1)
+				animation-name: arrow
+				animation-delay: 1.8s
+				top: 223px
+			&:nth-child(2)
+				animation-name: arrow
+				animation-delay: 2.7s
+				top: 523px
+				transform: translateX(0)
+			&:nth-child(3)
+				animation-name: arrow
+				animation-delay: 3.65s
+				top: 823px
+			&:nth-child(4)			
+				animation-name: arrow
+				animation-delay: 4.6s
+				top: 1123px
+				transform: translateX(0)
+
+@media screen and (max-width: 576px) 
+	.main
+		&__wrapper
+			&__card
+				width: 280px
+		&__card
+			width: 280px
+		&__text
+			width: 280px
+		&__title
+			font-size: 18px
+		&__subtitle
+			font-size: 18px
+		&__text
+			font-size: 18px
+		&__timeline
+			transform: translateX(calc( -50% - 170px ))
+		&__arrow
+			&:nth-child(1)
+				animation-name: smallArrow
+			&:nth-child(2)
+				animation-name: smallArrow
+			&:nth-child(3)
+				animation-name: smallArrow
+			&:nth-child(4)			
+				animation-name: smallArrow

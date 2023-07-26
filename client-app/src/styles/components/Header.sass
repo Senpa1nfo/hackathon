@@ -16,6 +16,10 @@
     &__wrapper
         @include flexCenter
         gap: 20px
+        &_menu
+            @include flexCenter
+            width: 90%
+            gap: 20px
     &__logo
         cursor: pointer
         display: flex
@@ -33,10 +37,11 @@
             color: var(--light-black)
             font-size: 20px
             font-weight: 600
+            width: 182px
         &:hover
             color: var(--orange)
         &:hover .header__logo__img    
-            fill: var(--orange)     
+            fill: var(--orange)   
     &__navbar
         width: 720px
         &__list
@@ -61,8 +66,9 @@
         cursor: pointer
         width: 24px
         height: 24px
+        margin-left: 16px
     &__login
-        width: 102px
+        width: 200px
         cursor: pointer
         @include flexCenter  
         gap: 12px
@@ -71,6 +77,9 @@
         position: relative
     &__user
         color: var(--light-black)
+        &_logo
+            color: var(--light-black)
+            display: none
         &:hover
             color: var(--orange)
         &:hover~&__list
@@ -108,6 +117,17 @@
             color: var(--orange)
     
 @media screen and (max-width: 1400px)
+    .header
+        &__user
+            display: none
+            &_logo
+                display: block
+                &:hover~.header__user__list
+                    height: 68px
+                &:hover~.header__user__list_admin
+                    height: 84px
+        &__login
+            width: 65px
 
 @media screen and (max-width: 1200px) 
     .header__logo__text
@@ -115,21 +135,57 @@
 @media screen and (max-width: 992px) 
     .header__navbar
         &__list
-            gap: 20px
-            a
-                font-size: 20px
-
-@media screen and (max-width: 768px) 
-    .header__navbar
-        &__list
             gap: 16px
             a
-                font-size: 16px
-        
-@media screen and (max-width: 576px) 
+                font-size: 18px
+
+@media screen and (max-width: 768px) 
     .header
-        &__wrapper
-            justify-content: flex-start
+        &__switcher
+            margin-left: 0
+        &__wrapper          
+            justify-content: start
+            gap: 0 
+            &_menu
+                position: relative
+                flex-direction: column
+                justify-content: start
+                position: absolute
+                top: 0
+                left: 0
+                width: 280px
+                height: 100dvh
+                padding-top: 32px
+                background: var(--white)
+                box-shadow: 0 0 6px var(--light-black)
+                transform: translateX(calc(-100% - 6px))
+                transition: all 1s
+                .header__login
+                    position: static
+                .header__navbar                 
+                    width: 100% 
+                    &__list
+                        flex-direction: column
+                .header__user_logo
+                    display: none
+                .header__logout
+                    position: absolute
+                    top: 32px
+                    left: 32px
+                .header__user__list, .header__user__list_admin
+                    top: 333px
+                    left: 50%
+                    transform: translateX(-50%)
+                    background: none
+                    box-shadow: none
+                    justify-content: start
+                    gap: 16px
+                    height: auto
+                    a
+                        font-size: 18px
+                    height: 140px
+                &_active
+                    transform: translateX(0)
         &__logo
             &__img
                 display: block
@@ -160,43 +216,6 @@
                         display: none
                     &:nth-child(3)
                         transform: rotateZ(-45deg) translateX(9px)
-        &__navbar
-            display: none
-            position: absolute
-            top: 0
-            left: 0
-            z-index: 2
-            width: 100dvw
-            height: 100dvh
-            background: var(--white)
-            &__list
-                @include flexColumnCenter
-                height: 200px
-                box-shadow: none
-                margin-top: 20px
-                a
-                    font-size: 24px
-            &_active
-                @include flexCenter
-        &__login
-            display: none
-            position: absolute
-            bottom: 0
-            left: 50%
-            transform: translateX(-50%)
-            z-index: 2
-            &_active
-                display: flex
-        &__user__list
-            height: 116px
-            box-shadow: none
-            z-index: 3
-            gap: 16px
-            a
-                font-size: 20px
-            &:hover
-                height: 116px
-            &_admin
-                height: 150px
-                &:hover
-                    height: 150px
+        
+        
+@media screen and (max-width: 576px) 

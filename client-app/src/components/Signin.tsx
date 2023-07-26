@@ -192,7 +192,7 @@ const Signin = observer(() => {
     }
 
     return (
-        <div onClick={closeModal} className='signin'>
+        <div onMouseDown={closeModal} className='signin'>
             <div className="signin__wrapper">
                 <form id='signin' className='signin__form signin__form_active' action="">
                     <div className="signin__text">Увійти до облікового запису</div>
