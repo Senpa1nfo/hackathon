@@ -30,6 +30,8 @@
         -moz-user-select: text
         -ms-user-select: text
         user-select: text
+        &_wrapper
+            display: flex
         &__img
             fill: var(--light-black)
             width: 28px
@@ -159,7 +161,8 @@
                 background: var(--white)
                 box-shadow: 0 0 6px var(--light-black)
                 transform: translateX(calc(-100% - 6px))
-                transition: all 1s
+                transition: all 0.5s
+                transition-timing-function: ease
                 .header__login
                     position: static
                 .header__navbar                 
