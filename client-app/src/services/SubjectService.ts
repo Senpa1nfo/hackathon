@@ -17,9 +17,6 @@ export default class SubjectService {
     static async edit(path: string, title: string, lessons: Array<any>): Promise<void> {
         return $api.patch(`/subject/update/${path}`, {title, lessons});
     }
-    static async updateProgress(path: string, progress: string): Promise<void> {
-        return $api.patch(`/subject/update-progress/${path}`, {progress});
-    }
     static async remove(path: string): Promise<void> {       
         return $api.delete(`/subject/delete/${path}`);
     }

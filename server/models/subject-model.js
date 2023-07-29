@@ -7,6 +7,7 @@ const ArticleSchema = new Schema({
 
 const ParagraphSchema = new Schema({
     title: { type: String},
+    progress: {type: String, default: 0},
     articles: [ArticleSchema]
 })
 

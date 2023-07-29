@@ -3,10 +3,24 @@ import TestService from "../services/TestService";
 
 export default class TestStore {
 
-
+    isLoading = true;
+    isAdding = false;
 
     constructor() {
         makeAutoObservable(this);
+    }
+
+    setLoading(isLoading: boolean) {
+        this.isLoading = isLoading;
+    }
+
+    setAdding(isAdding: boolean) {
+        if (!isAdding) {
+            localStorage.removeItem('addtest');  
+        } else {
+            localStorage.setItem('addtest', 'true');        
+        }
+        this.isAdding = isAdding;
     }
 
     async getAll() {
@@ -18,34 +32,34 @@ export default class TestStore {
         }
     }
 
-    async getOne(path: string) {
+    async getOne(path: string, part:string) {
         try {
-            const response = await TestService.getOne(path);
+            const response = await TestService.getOne(path, part);
             return response.data;
         } catch (error) {
             console.log(error);           
         }
     }
 
-    async edit(path: string, title: string) {
+    async edit(path: string, part:string, questions: string) {
         try {
-            await TestService.edit(path, title);
+            await TestService.edit(path, part, questions);
         } catch (error) {
             console.log(error);           
         }
     }
 
-    async create(path: string, title: string) {
+    async create(path: string, part:string, questions: string) {
         try {
-            await TestService.create(path, title);
+            await TestService.create(path, part, questions);
         } catch (error) {
             console.log(error);           
         }
     }
 
-    async delete(path: string) {
+    async delete(path: string, part:string) {
         try {
-            await TestService.remove(path);
+            await TestService.remove(path, part);
         } catch (error) {
             console.log(error);           
         }

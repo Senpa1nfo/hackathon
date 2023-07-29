@@ -1,4 +1,3 @@
-const TestModel = require('../models/test-model');
 const TestService = require('../services/test-service');
 
 class TestController {
@@ -13,19 +12,9 @@ class TestController {
 
     async getOne(req, res, next) {
         try {
-            const path = req.params.path;
-            const item = await TestService.getOne(path);
-            return res.json(item);
-        } catch (error) {
-            next(error);
-        }
-    }
-
-    async edit(req, res, next) {
-        try {
-            const { text } = req.body;
-            const path = req.params.path;
-            const item = await TestService.edit(path, text);
+            const subject = req.params.subject;
+            const part = req.params.part;
+            const item = await TestService.getOne(subject, part);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -34,9 +23,22 @@ class TestController {
 
     async create(req, res, next) {
         try {
-            const path = req.params.path;
-            const { text } = req.body;
-            const item = await TestService.create(String(path).toLocaleLowerCase(), text);
+            const subject = req.params.subject;
+            const part = req.params.part;
+            const { correct, questions } = req.body;
+            const item = await TestService.create((subject), part, correct, questions);
+            return res.json(item);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    async edit(req, res, next) {
+        try {
+            const subject = req.params.subject;
+            const part = req.params.part;
+            const { correct, questions } = req.body;
+            const item = await TestService.edit(subject, part, correct, questions);
             return res.json(item);
         } catch (error) {
             next(error);
@@ -45,8 +47,9 @@ class TestController {
 
     async remove(req, res, next) {
         try {
-            const path = req.params.path;
-            const item = await TestService.remove(path);
+            const subject = req.params.subject;
+            const part = req.params.part;
+            const item = await TestService.remove(subject, part);
             return res.json(item);
         } catch (error) {
             next(error);

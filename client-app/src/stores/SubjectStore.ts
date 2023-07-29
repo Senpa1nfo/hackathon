@@ -85,14 +85,6 @@ export default class SubjectStore {
         }
     }
 
-    async updateProgress(path: string, progress: string) {
-        try {
-            await SubjectService.updateProgress(path, progress);
-        } catch (error) {
-            console.log(error);           
-        }
-    }
-
     async delete(path: string) {
         try {
             await SubjectService.remove(path)

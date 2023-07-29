@@ -78,9 +78,45 @@ class UserService {
         return {...tokens, user: userDto};
     }
 
-    async getAllUsers() {
-        const users = await UserModel.find();
-        return users;
+    async updateProgress(userId, chapterPath, chapterProgress) {
+        const user = await UserModel.findById(userId);
+        if (!user) {
+            throw new Error('Пользователь не найден');
+        }
+
+        const chapterIndex = user.progress.findIndex((chapter) => chapter.chapterPath === chapterPath);
+        if (chapterIndex === -1) {
+            user.progress.push({ chapterPath, chapterProgress });
+        } else {
+            user.progress[chapterIndex].chapterProgress = chapterProgress;
+        }
+
+        const updatedUser = await user.save();
+
+        return updatedUser;
+    }
+
+    async updatePartProgress(userId, chapterPath, partPath, partProgress) {
+        const user = await UserModel.findById(userId);
+        if (!user) {
+            throw new Error('Пользователь не найден');
+        }
+    
+        const chapterIndex = user.progress.findIndex((chapter) => chapter.chapterPath === chapterPath);
+
+        if (chapterIndex === -1) {
+            user.progress.push({ chapterPath, chapterProgress: '0', parts: [{ partPath, partProgress }] });
+        } else {
+            const partIndex = user.progress[chapterIndex].parts.findIndex((part) => part.partPath === partPath);
+            if (partIndex === -1) {
+                user.progress[chapterIndex].parts.push({ partPath, partProgress });
+            } else {
+                user.progress[chapterIndex].parts[partIndex].partProgress = partProgress;
+            }
+        }
+    
+        const updatedUser = await user.save();
+        return updatedUser;
     }
 }
 

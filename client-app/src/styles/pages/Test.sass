@@ -1,0 +1,249 @@
+@import '../mixins'
+@import '../variables'
+    
+.test
+    color: var(--light-black)
+    .container
+        height: 100%
+    &__wrapper
+        width: 100%
+        height: 100%
+        @include flexColumnCenter
+        justify-content: start
+        gap: 64px
+    &__items
+        max-width: 644px
+        padding: 0 0 6px 6px
+        display: flex
+        gap: 316px
+        overflow: hidden
+    &__item
+        height: 582px
+        max-width: 632px
+        @include flexColumnCenter
+        justify-content: end
+        align-items: start
+        gap: 64px
+        transition: all 0.5s
+        transition-timing-function: ease-in-out
+        &_result
+            align-items: center
+            .test__question
+                font-size: 32px
+                font-weight: 700
+            .test__answers
+                font-size: 24px
+                span
+                    cursor: default
+                    font-size: 24px
+                    position: static
+                    display: inline
+                    color: var(--orange)
+                    -webkit-user-select: text
+                    -moz-user-select: text
+                    -ms-user-select: text
+                    user-select: text
+    &__question
+        font-size: 24px
+        line-height: 30px
+        text-indent: -64px
+        padding-left: 64px
+        -webkit-user-select: none
+        -moz-user-select: none
+        -ms-user-select: none
+        user-select: none
+    &__answers
+        position: relative
+        width: 632px
+        height: 332px
+        @include flexCenter
+        flex-wrap: wrap
+        gap: 32px
+        span
+            position: absolute
+            z-index: 2
+            cursor: pointer
+            @include flexColumnCenter
+            width: 64px
+            height: 64px
+            font-size: 16px
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+            -webkit-user-select: none
+            -moz-user-select: none
+            -ms-user-select: none
+            user-select: none
+            &_active
+                animation: pulseSkip 1s ease 0s 1 normal forwards
+            &:hover
+                color: var(--orange)
+            &:hover~.test__option_fifth div
+                box-shadow: none
+    &__option
+        position: relative
+        z-index: 2
+        cursor: pointer
+        width: 300px
+        height: 150px
+        padding: 12px 24px
+        @include flexColumnCenter
+        font-size: 18px
+        border-radius: 72px 24px 72px 24px
+        box-shadow: 0 0 6px var(--light-black)
+        background-color: var(--white)
+        transition: box-shadow 0.4s
+        -webkit-user-select: none
+        -moz-user-select: none
+        -ms-user-select: none
+        user-select: none
+        &_active
+            border: 2px solid var(--orange)  
+            box-shadow: none
+            animation: pulseOption 1s ease 0s 1 normal forwards
+        &:hover
+            color: var(--orange)
+            box-shadow: none
+        &:nth-child(2)
+            border-radius: 24px 72px 24px 72px
+        &:nth-child(3)
+            border-radius: 24px 72px 24px 72px
+        &_fifth
+            width: 166px
+            height: 166px
+            position: absolute
+            z-index: 0
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+            overflow: hidden       
+            div
+                position: absolute
+                width: 300px
+                height: 150px
+                background-color: var(--white)
+                box-shadow: inset 0 0 6px var(--light-black)
+                transition: box-shadow 0.4s
+                &:nth-child(1)
+                    top: -66px
+                    left: -216px
+                    border-radius: 72px 24px 72px 24px
+                &:nth-child(2)
+                    top: -66px
+                    right: -216px
+                    border-radius: 24px 72px 24px 72px
+                &:nth-child(3)
+                    bottom: -66px
+                    left: -216px
+                    border-radius: 24px 72px 24px 72px
+                &:nth-child(4)
+                    bottom: -66px
+                    right: -216px
+                    border-radius: 72px 24px 72px 24px      
+            &_active
+                animation: pulseSkip 1s ease 0s 1 normal forwards
+                div
+                    border: 2px solid var(--orange)  
+                    box-shadow: none     
+    &__btns
+        width: 632px
+        @include flexCenter
+        justify-content: space-around
+        button, div
+            -webkit-user-select: none
+            -moz-user-select: none
+            -ms-user-select: none
+            user-select: none
+            width: 140px
+
+@keyframes pulseOption
+    0% 
+        animation-timing-function: ease-out
+        transform: scale(1)
+        transform-origin: center center
+    10% 
+        animation-timing-function: ease-in
+        transform: scale(0.91)	
+    17% 
+        animation-timing-function: ease-out
+        transform: scale(0.98)
+    33% 
+        animation-timing-function: ease-in
+        transform: scale(0.87)
+    45% 
+        animation-timing-function: ease-out
+        transform: scale(1)
+@keyframes pulseSkip
+    0% 
+        animation-timing-function: ease-out
+        transform: translate(-50%, -50%) scale(1)
+        transform-origin: center center
+    10% 
+        animation-timing-function: ease-in
+        transform: translate(-50%, -50%) scale(0.91)	
+    17% 
+        animation-timing-function: ease-out
+        transform: translate(-50%, -50%) scale(0.98)
+    33% 
+        animation-timing-function: ease-in
+        transform: translate(-50%, -50%) scale(0.87)
+    45% 
+        animation-timing-function: ease-out
+        transform: translate(-50%, -50%) scale(1)
+
+@media screen and (max-width: 768px) 
+    .test
+        &__wrapper
+            height: auto
+            gap: 24px
+        &__items
+            max-width: 300px
+            padding: 0 0 6px 0
+        &__item
+            height: auto
+            justify-content: start
+            align-items: start
+            gap: 24px
+            &_result
+                justify-content: center
+                .test__question
+                    padding: 0
+                    font-size: 22px
+                    font-weight: 700
+                .test__answers
+                    font-size: 20px
+                    span
+                        font-size: 20px
+        &__answers
+            flex-direction: column
+            flex-wrap: nowrap
+            height: auto
+            width: 300px
+            gap: 16px
+            span
+                display: none
+        &__question
+            width: 100%
+            text-indent: 0
+            font-size: 18px
+            padding: 8px 16px
+        &__option
+            font-size: 14px
+            width: 280px
+            height: auto
+            min-height: 50px
+            border-radius: 24px
+            padding: 8px 16px
+            &:nth-child(2)
+                border-radius: 24px
+            &:nth-child(3)
+                border-radius: 24px
+            &_fifth
+                display: none 
+                div
+                    display: none
+        &__btns
+            width: 300px
+        &__btns_mobile
+            div
+                display: none

@@ -74,6 +74,29 @@ class UserController {
             next(error);
         }
     }
+
+    async updateProgress(req, res, next) {
+        try {
+            const { _id, chapterProgress } = req.body;
+            const chapterPath = req.params.chapterPath;
+            const item = await UserService.updateProgress(_id, chapterPath, chapterProgress);
+            return res.json(item);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    async updatePartProgress(req, res, next) {
+        try {
+            const { _id, partProgress } = req.body;
+            const chapterPath = req.params.chapterPath;
+            const partPath = req.params.partPath;
+            const item = await UserService.updatePartProgress(_id, chapterPath, partPath, partProgress);
+            return res.json(item);
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 module.exports = new UserController();

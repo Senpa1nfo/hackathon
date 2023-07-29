@@ -42,17 +42,6 @@ class SubjectController {
         }
     }
 
-    async updateProgress(req, res, next) {
-        try {
-            const { progress } = req.body;
-            const path = req.params.path;
-            const item = await SubjectService.updateProgress(path, progress);
-            return res.json(item);
-        } catch (error) {
-            next(error);
-        }
-    }
-
     async remove(req, res, next) {
         try {
             const path = req.params.path;

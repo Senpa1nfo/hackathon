@@ -9,6 +9,7 @@ export interface ParagraphItem {
     title: string;
     articles: ArticleItem[];
     id: string;
+    progress: string;
     _id: string;
 }
 

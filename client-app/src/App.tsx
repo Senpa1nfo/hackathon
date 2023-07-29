@@ -8,6 +8,7 @@ import Grade from "./pages/Grade";
 import Header from "./components/Header";
 import AdminPanel from "./pages/AdminPanel";
 import GradeParagraph from "./pages/GradeParagraph";
+import Test from "./pages/Test";
 
 function App() {
   const {storeAuth} = useContext(Context);
@@ -40,7 +41,8 @@ function App() {
           <Route path='/profile' element={<Main/>}/>
           <Route path='/grade/:grade' element={<Grade/>}/>
           <Route path='/grade/:grade/:path' element={<GradeParagraph/>}/>
-          <Route path='/grade/:grade/:path/:id' element={<GradeParagraph/>}/>
+          <Route path='/grade/:grade/:path/:part' element={<GradeParagraph/>}/>
+          <Route path='/grade/:grade/:path/:part/:test' element={<Test/>}/>
       </Routes>
     </>
   );

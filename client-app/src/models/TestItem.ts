@@ -1,4 +1,12 @@
+interface questions {
+    title: string,
+    correct: string,
+    answers: string[]
+    _id: string
+}
+
 export interface TestItem {
-    path: string;
-    title: string;
+    subject: string;
+    part: string;
+    questions: questions[]
 }

@@ -1,0 +1,21 @@
+@import '../variables'
+@import '../mixins'
+    
+.auth-error
+    position: absolute
+    z-index: 3
+    top: 0
+    left: 0
+    width: 100dvw
+    height: 100dvh
+    background: rgba(0, 0, 0, 0.2)
+    display: none
+    &_active
+        @include flexCenter
+    &__wrapper
+        padding: 40px
+        border-radius: 24px 
+        @include flexCenter
+        background: var(--white)
+        box-shadow: 0 0 6px var(--box-shadow)
+        color: var(--red)

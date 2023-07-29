@@ -5,6 +5,7 @@ module.exports = class UserDto {
     isActivated;
     activationLink;
     admin;
+    progress;
 
     constructor(model) {
         this.name = model.name;
@@ -13,5 +14,6 @@ module.exports = class UserDto {
         this.isActivated = model.isActivated;
         this.activationLink = model.activationLink;
         this.admin = model.admin;
+        this.progress = model.progress;
     }
 }

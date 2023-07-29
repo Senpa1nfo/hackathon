@@ -109,4 +109,20 @@ export default class AuthStore {
             console.log(error);
         }
     }
+
+    async updateProgress(_id: string, chapterPath: string, chapterProgress: string) {
+        try {
+            await AuthService.updateProgress(_id, chapterPath, chapterProgress);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async updatePartProgress(_id: string, chapterPath: string, partPath: string, partProgress: string) {
+        try {
+            await AuthService.updatePartProgress(_id, chapterPath, partPath, partProgress);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }

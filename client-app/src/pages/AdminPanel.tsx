@@ -4,18 +4,23 @@ import SubjectList from '../components/SubjectList';
 import { useContext, useEffect, useState } from 'react';
 import Chapter from '../components/Chapter';
 import { Context } from '..';
+import TestAdding from '../components/TestAdding';
 
 const AdminPanel = observer(() => {
 
     const {storeSubject} = useContext(Context);
+    const {storeTest} = useContext(Context);
 
     const [grade, setGrade] = useState('5');
     const [chapterPath, setChapterPath] = useState('');
-    const [isEditing, setIsEditin] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
         if (localStorage.getItem('editing')) {
-            setIsEditin(true);
+            setIsEditing(true);
+        }
+        if (localStorage.getItem('addtest')) {
+            storeTest.setAdding(true);
         }
         if (localStorage.getItem('grade')) {
             setGrade(String(localStorage.getItem('grade')));
@@ -56,9 +61,9 @@ const AdminPanel = observer(() => {
                     <div className="admin__workspace">
                         {isEditing ? (
                             <>
-                                <form action="" className="admin__form">
+                                <form className="admin__form">
                                     <div className="admin__form__exit">
-                                        <i onClick={() => {setIsEditin(false); localStorage.removeItem('editing')}} className="fa-solid fa-arrow-left-long"></i>
+                                        <i onClick={() => {setIsEditing(false); localStorage.removeItem('editing')}} className="fa-solid fa-arrow-left-long"></i>
                                         <input value={chapterPath} onChange={(event) => setChapterPath(event.target.value)} type="text" placeholder='url-адреса'/>
                                         <button onClick={addSubject}>Додати</button>
                                     </div>
@@ -67,13 +72,28 @@ const AdminPanel = observer(() => {
                             </>
                         ) : (
                             <>
-                                <div className="admin__left-menu">
-                                    <button onClick={() => {setIsEditin(true); localStorage.setItem('editing', 'true')}}>Додати розділ</button>
-                                </div>
-                                <div className="admin__right-menu">
-                                    <SubjectList grade={grade} admin={true}></SubjectList>
-                                </div>
-                            </>
+                                {storeTest.isAdding ? (
+                                    <>
+                                        <form className="admin__form">
+                                            <div className="admin__form__exit">
+                                                <i onClick={() => storeTest.setAdding(false)} className="fa-solid fa-arrow-left-long"></i>
+                                                <button>Додати питання</button>
+                                                <button>Видалити питання</button>
+                                            </div>  
+                                            <TestAdding path={chapterPath}></TestAdding>                                                  
+                                        </form>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="admin__left-menu">
+                                            <button onClick={() => {setIsEditing(true); localStorage.setItem('editing', 'true')}}>Додати розділ</button>
+                                        </div>
+                                        <div className="admin__right-menu">
+                                            <SubjectList grade={grade} admin={true}></SubjectList>
+                                        </div>
+                                    </>
+                                )}
+                            </>                        
                         )}
                     </div>
                 </div>

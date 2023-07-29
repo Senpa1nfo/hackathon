@@ -7,7 +7,7 @@ import { SubjectItemGet } from '../models/SubjectItemGet';
 const GradeParagraph = () => {
 
     const {storeSubject} = useContext(Context);
-    const { path, id } = useParams();
+    const { path, part } = useParams();
     const [chapter, setChapter] = useState<SubjectItemGet>();
 
     useEffect(() => {
@@ -25,9 +25,9 @@ const GradeParagraph = () => {
         <main>
             <div className="container">
                 <div key={chapter?.path} className='chapter'>
-                    <h1 className="chapter__title">{chapter?.paragraphs[Number(id) -1].title}</h1>
+                    <h1 className="chapter__title">{chapter?.paragraphs[Number(part?.split('_')[1]) -1].title}</h1>
                     <div className="chapter__wrapper">
-                        {chapter?.paragraphs[Number(id) -1].articles.map(element => (
+                        {chapter?.paragraphs[Number(part?.split('_')[1]) -1].articles.map(element => (
                             <div key={element._id} className="chapter__article">
                                 <div className='chapter__article__title'>{element.title}</div>
                                 <div className='chapter__article__text'>{element.text.split('\n').map((element, index) => (

@@ -21,20 +21,21 @@ router.get('/refresh', UserController.refresh);
 router.get('/posts', PostController.getAll);
 router.get('/posts/:path', PostController.getOne);
 router.post('/posts/create/:path', PostController.create);
-router.delete('/posts/delete/:path', PostController.remove);
 router.patch('/posts/update/:path', PostController.edit);
+router.delete('/posts/delete/:path', PostController.remove);
 
 router.get('/subject', SubjectController.getAll);
 router.get('/subject/:path', SubjectController.getOne);
 router.post('/subject/create/:path', SubjectController.create);
-router.delete('/subject/delete/:path', SubjectController.remove);
 router.patch('/subject/update/:path', SubjectController.edit);
-router.patch('/subject/update-progress/:path', SubjectController.updateProgress);
+router.delete('/subject/delete/:path', SubjectController.remove);
+router.patch('/subject/update-progress/:chapterPath', UserController.updateProgress);
+router.patch('/subject/update-progress/:chapterPath/:partPath', UserController.updatePartProgress);
 
 router.get('/test', TestController.getAll);
-router.get('/test/:path', TestController.getOne);
-router.post('/test/create/:path', TestController.create);
-router.delete('/test/delete/:path', TestController.remove);
-router.patch('/test/update/:path', TestController.edit);
+router.get('/test/:subject/:part', TestController.getOne);
+router.post('/test/create/:subject/:part', TestController.create);
+router.patch('/test/update/:subject/:part', TestController.edit);
+router.delete('/test/delete/:subject/:part', TestController.remove);
 
 module.exports = router;

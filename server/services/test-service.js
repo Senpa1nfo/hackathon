@@ -6,30 +6,30 @@ class TestService {
         return item;
     }
 
-    async getOne(path) {
-        const item = await TestModel.findOne({ path });
+    async getOne(subject, part) {
+        const item = await TestModel.findOne({subject, part});
+        return item;
+    }
+    
+    async create(subject, part, correct, questions) {
+        const test = await TestModel.findOne({subject, part});
+        if (test) {
+            return 'Тест с таким путём уже существует!';
+        }
+        const item = await TestModel.create({subject, part, correct, questions});
         return item;
     }
 
-    async edit(path, text) {
-        const item = await TestModel.findOneAndUpdate({ path }, { text } , {
+    async edit(subject, correct, questions) {
+        const item = await TestModel.findOneAndUpdate({subject, part}, {questions, correct} , {
             new: true,
             upsert: true
         });
         return item;
     }
 
-    async create(path, text) {
-        const test = await TestModel.findOne({ path });
-        if (test) {
-            return 'Тест с таким путём уже существует!';
-        }
-        const item = await TestModel.create({ path, text });
-        return item;
-    }
-
-    async remove(path) {
-        const item = await TestModel.deleteOne({ path });
+    async remove(subject, part) {
+        const item = await TestModel.deleteOne({subject, part});
         return item;
     }
 }

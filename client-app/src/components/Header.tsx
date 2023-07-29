@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import '../styles/components/Header.sass';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Signin from './Signin';
 import { Context } from '..';
 import { useContext, useEffect } from 'react';
@@ -10,12 +10,6 @@ import sun from '../icons/light_theme_icon.svg';
 import moon from '../icons/dark_theme_icon.svg';
 
 const Header = observer(() => {
-
-    const navigate = useNavigate();
-    const handleSelect = (grade: string) => {
-            navigate(`/grade/${grade}`, {
-        });
-    };
 
     const {storeAuth} = useContext(Context);
 
@@ -74,13 +68,13 @@ const Header = observer(() => {
                         <div className="header__wrapper_menu">
                             <nav className='header__navbar'>
                                 <div className='header__navbar__list'>
-                                    <a onClick={() => {handleSelect('5'); toggleMenu()}} className='header__navbar__link'>5 клас</a>
-                                    <a onClick={() => {handleSelect('6'); toggleMenu()}} className='header__navbar__link'>6 клас</a>
-                                    <a onClick={() => {handleSelect('7'); toggleMenu()}} className='header__navbar__link'>7 клас</a>
-                                    <a onClick={() => {handleSelect('8'); toggleMenu()}} className='header__navbar__link'>8 клас</a>
-                                    <a onClick={() => {handleSelect('9'); toggleMenu()}} className='header__navbar__link'>9 клас</a>
-                                    <a onClick={() => {handleSelect('10'); toggleMenu()}} className='header__navbar__link'>10 клас</a>
-                                    <a onClick={() => {handleSelect('11'); toggleMenu()}} className='header__navbar__link'>11 клас</a>
+                                    <Link onClick={toggleMenu} to='/grade/5' className='header__navbar__link'>5 клас</Link>
+                                    <Link onClick={toggleMenu} to='/grade/6' className='header__navbar__link'>6 клас</Link>
+                                    <Link onClick={toggleMenu} to='/grade/7' className='header__navbar__link'>7 клас</Link>
+                                    <Link onClick={toggleMenu} to='/grade/8' className='header__navbar__link'>8 клас</Link>
+                                    <Link onClick={toggleMenu} to='/grade/9' className='header__navbar__link'>9 клас</Link>
+                                    <Link onClick={toggleMenu} to='/grade/10' className='header__navbar__link'>10 клас</Link>
+                                    <Link onClick={toggleMenu} to='/grade/11' className='header__navbar__link'>11 клас</Link>
                                 </div>
                             </nav>
                             <div className="header__login">

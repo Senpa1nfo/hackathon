@@ -29,14 +29,6 @@ class SubjectService {
         return item;
     }
 
-    async updateProgress(path, progress) {
-        const item = await SubjectModel.findOneAndUpdate({ path }, { progress } , {
-            new: true,
-            upsert: true
-        });
-        return item;
-    }
-
     async remove(path) {
         const item = await SubjectModel.deleteOne({ path });
         return item;
